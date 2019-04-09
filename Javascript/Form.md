@@ -136,10 +136,10 @@ JS代码如下：
 > 
 > 为了兼容性考虑，可以用以下方法:
 >  
-    var element=document.getElementById('firstElement');
-    if(! elemet.autofocus){
-    	element.focus();
-    }
+>     var element=document.getElementById('firstElement');
+>     if(! elemet.autofocus){
+>     	element.focus();
+>     }
 
 <p>
  <b>事件:</b>
