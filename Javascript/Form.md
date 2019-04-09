@@ -36,6 +36,7 @@
     $("form").submit(function(){ 
     	$(":submit",this).attr("disabled",true); 
     });
+```
 
 之后处理完成之后，再去掉disabled属性即可。
 
