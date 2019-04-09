@@ -8,9 +8,11 @@
 
 不论是button还是input标签都可以，只需要type类型为submit即可，或者用图片提交，type类型为image。例如：<br/>
 
+```html
     <input type="submit" value="Submit"
     <button type="submit">Submit</button>
     <input type="image" src="a.gif">
+```
 
 > 以上三种分为 通用提交按钮、自定义提交按钮和图像按钮
 
@@ -20,8 +22,10 @@
 
 调用表单的submit()方法提交表单，这种方式无需表单包含提交按钮，何时都可以正常提交表单。
 
+```javascript
     var form =document.getELementById('form');
     form.submit();
+```
 
 区别在于submit()方法提交表单时，不会触发submit事件，所以要在调用方法前，先进行数据验证。
 
@@ -40,14 +44,19 @@
 
 之后处理完成之后，再去掉disabled属性即可。
 
+```javascript
      $('form :submit').removeAttr("disabled");
+```
 
 当然还有一种办法：JQuery有一个unbind方法，可以暂时禁用事件和方法的绑定。在使用ajax的情况下，可以这样使用：
 
-    <input type="button" value="Submit" id="btn">
+```html
+<input type="button" value="Submit" id="btn">
+```
     
 JS代码如下：<br>
 
+```javascript
     var btn = $("#btn");
     var bindBtn = function() {
     	btn.click(function() {
@@ -69,17 +78,21 @@ JS代码如下：<br>
             });
         });
     }
+```
 
  **方案2：** 利用onsubmit事件处理程序取消后续的表单提交操作<br/>
 基本思路就是利用onsubmit属性，加上一个flag，在点击一次之后，只返回false，从而阻止表单的提交。
 
+```html
     <form action="" method="post" name="form1" onsubmit="return dbClick();">
     	<input name="myname" type="text">
     	<input type="submit" name="FormSubmit" id="submitbtn" value="提交">
     </form>
+```
 
 JS代码如下：
 
+```javascript
     var dbClickFlag = true;
     function dbClick() {
     	//也可以在这里直接禁用掉提交按钮
@@ -90,6 +103,7 @@ JS代码如下：
     	}
     	return dbClickFlag;
     };
+```
 
 ### 2. 重置表单 ###
 
@@ -102,7 +116,9 @@ JS代码如下：
 用法实例： <br/>
 如果表单中有三个字段的 **name** 都是"color",那么 form.elements["color"] 的length将会是3。获取第一个元素可以用:
 
-    var firstColorField=form.elements["color"][0]
+```javascript
+    var firstColorField=form.elements["color"][0];
+```
 
 表单字段除了fieldset标签之外，其他都拥有一组相同的属性、方法和事件：<br>
 
@@ -137,11 +153,12 @@ JS代码如下：
 > `<input type="text" id="firstElement" autofocus>`
 > 
 > 为了兼容性考虑，可以用以下方法:
->  
+>  ```javascript
 >     var element=document.getElementById('firstElement');
 >     if(! elemet.autofocus){
 >     	element.focus();
 >     }
+>   ```
 
 <p>
  <b>事件:</b>
@@ -169,13 +186,14 @@ select事件：选择了文本框中的文本时触发。标准浏览器是当�
  **获取选中的文本** 
 
 H5中引入了selectionStart 和 selectionEnd 两个属性，帮助获取用户选中的文本。在标准浏览器中，可以这样使用：
-
+```javascript
     function getSelectedText(textbox){
     	return textbox.value.substring(textbox.selectionStart, textbox.selectionEnd);
     }
+```
 
 但是在IE8-不支持这两个属性，它包含一个document.selection对象，保存着用户在整个文档范围内选择的文档。可以与select事件一起使用，用户选择了文本框中文本，触发了select事件，要取得选择的文本，先创建一个范围，然后再把文本从里面取出来。所以兼容IE8-的代码可以这样写：
-
+```javascript
     function getSelectedText(textbox){
     	//这里也可以用typeof textbox.selectionStart =="number"来判断是不是IE8-	
 		if(textbox.selectionStart){
@@ -184,6 +202,7 @@ H5中引入了selectionStart 和 selectionEnd 两个属性，帮助获取用户�
        		return document.selection.createRange().text;
     	}
     }
+```
 
  **选中部分文本**
 
@@ -192,7 +211,7 @@ H5为所有的文本框提供了一个setSelectionRange()方法，接受要选�
 IE8不支持这种方法，思路大致如下：先用createTextRange()创建一个范围，用collapse()将范围折叠到文本框的开始位置，再用moveStart(),此时范围起点终点都移动到了相同位置，再用moveEnd()移动到要选中的结束位置，最后用select()选取即可。
 
 兼容的实现方法如下：
-
+```javascript
     function selectText(textbox,startIndex,endIndex){
     	if(textbox.setSelectionRange){
     		textbox.setSelectionRange(startIndex,endIndex);
@@ -205,4 +224,5 @@ IE8不支持这种方法，思路大致如下：先用createTextRange()创建一
     	}
 		textbox.focus();
     }
+```
 
