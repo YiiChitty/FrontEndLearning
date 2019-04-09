@@ -32,6 +32,7 @@
 在onclick事件里面执行 $(this).attr('disabled','disabled');<br>
 在点击一次后立马将按钮设置为不可用。
 
+    ```javascript
     $("form").submit(function(){ 
     	$(":submit",this).attr("disabled",true); 
     });
