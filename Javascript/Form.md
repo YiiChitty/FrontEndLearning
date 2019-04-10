@@ -487,11 +487,11 @@ clipboardData对象有三个方法:
 
 ```html
     <iframe name="richedit" style="height:100px;width:100px;" src="blank.htm"></iframe>
-	<script>
-		window.onload=function(){
-			frames["richedit"].document.designMode="on";
-		};
-	</script>
+    <script>
+    window.onload=function(){
+    	frames["richedit"].document.designMode="on";
+    };
+    </script>
 ```
 
 实现方式2：contenteditable属性
