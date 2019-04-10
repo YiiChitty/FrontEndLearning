@@ -295,8 +295,6 @@ clipboardData对象有三个方法:
        		return event.clipboardData.setData("text", text);
        	}
     },
-</code>
-</p>
 ```
 
 通常要确保粘贴到文本框中的文本包含某些字符或者要求符合某种格式要求的时候，就需要访问剪贴板，再做验证。
@@ -360,3 +358,179 @@ clipboardData对象有三个方法:
 })();
 ```
 
+ **H5表单约束**
+
+为了更好地在表单提交到服务器之前进行数据验证，H5提供了一些新功能，即便是js被禁用或者未能加载成功，都可以确保基本的验证。但是，适用范围为：FF 4+,Safari 5+,Chrome,Opera 10+。<br>
+**有用，但略鸡肋……** ╮(╯—╰)╭
+
+<ol>
+  <li>新增必填字段属性required<br>
+  <label>标注了required的字段在提交表单时不能空。适用于input标签、textarea标签和select标签字段。</label>
+  </li>
+  <li>新增input标签的输入类型<br>
+  <label>新类型有：<br>
+  email:要求输入文本必须符合电子邮件地址模式，但是并不靠谱，因为“-@-”也会通过。<br>
+  url:要求输入的文本必须符合URL模式<br>
+  需要注意：如果不给input设置required属性，空文本框也会验证通过。 感觉比较鸡肋 :) <br>
+  <blockquote>其实input还有一些类型，这些都要求填写某种基于数字的值，比如说number，datetime之类的，但是浏览器的支持不太好。对于这些数字类型的，可以添加min、max、step(min到max的刻度)等。
+  </blockquote>
+  </label>
+  </li>
+  <li>新增约束属性pattern<br>
+  <label>这个属性的值是一个正则表达式，用于匹配文本框的值。如果要从头到尾进行模式匹配，那正则表达式的开头和末尾都不用加^和$符号。</label>
+  </li>
+  <li>新增检测字段是否有效方法checkValidity()<br>
+  <label>所有表单的字段都有这个方法，如果值有效，返回true，否则返回false。字段判断的有效性依据是上面提到的1-3的约束。<br>
+  如果要检测整个表单是否有效，可以在表单自身调用checkValidity()。
+  </label>
+  </li>
+  <li>新增禁用验证属性novalidate</li>
+  <label>通过设置novalidate，让表单不验证。如果一个表单有多个提交按钮，要指定某个按钮不必验证表单，可以直接在此按钮上加上formnovalidate属性。</label>
+</ol>
+
+### 5.选择框 ###
+
+除了表单所有字段的公共属性方法，HTMLSelectElement还有以下自有的属性和方法。
+<p>
+ <b>属性:</b>
+<ul>
+ <li> mutiple:布尔值，是否允许多选 </li>
+ <li> options:控件中所有option元素的HTMLCollection </li>
+ <li> selectedIndex:基于0的选中项索引，默认不选是-1，多选的控件只保存选中项中第一项索引。 </li>
+ <li> size：选择框可见行数</li>
+</ul>
+</p>
+<p>
+  <b>方法：</b>
+  <ul>
+  <li>add(newOption,relOption):添加新的选项，位置在relOption之前。</li>
+  <li>remove(index):根据索引，移除选项</li>
+  </ul>
+</p>
+
+在DOM中，每个option元素都有一个HTMLOptionElement对象表示，包括以下属性:
+<ul>
+  <li>index:当前选项在options中的索引</li>
+  <li>label:当前选项标签</li>
+  <li>selected：布尔值，是否被选中</li>
+  <li>text：选项文本</li>
+  <li>value：选项的值</li>
+</ul>
+
+ **添加选项**
+
+大致有三种方式：
+
+方式1：先创建后添加文本节点，并设置value特性，最后添加到选择框中。
+```javascript
+    var newOption=document.createElement("option");
+    newOption.appdendChild(document.createTextNode("选项文本"));
+    newOption.setAttribute("value","选项的值");
+    selectbox.appendChild(newOption);
+```
+方式2：用Option的构造函数创建，兼容DOM的浏览器返回一个option元素，再用appendChild添加到选择框中。
+```javascript
+    var newOption=new Option("选项文本","选项的值");
+    selectbox.appendChild(newOption);
+```
+>IE不支持！
+
+方式3：使用选择框add()<br>
+方法有两个参数：添加的新元素、要插入的元素索引。IE对第二个参数可选，如果指定，必须是一个索引；标准浏览器要求必须指定第二个参数。
+所以要想在所有元素之后插入新选项可以这样做：<br>
+```javascript
+    var newOption=new Option("选项文本","选项的值");
+    selectbox.add(newOption,undefined);
+```
+
+ **移除选项**
+
+方式1：使用DOM的removeChild()
+
+```javascript
+	//移除第一个选项
+	selectbox.removeChild(selectbox.options[0]);
+```
+
+方式2：使用选择框的remove()
+
+```javascript
+	//移除第一个选项
+	selectbox.remove(0);
+```
+
+方式3：设置相应的选项为null
+```javascript
+	//移除第一个选项
+	//Options集合对象是HTMLCollection，这是个动态的集合，移除第一个后面的会自动向前移动
+	selectbox.options[0]=null;
+```
+ 
+ **移动选项**
+
+将选择框中某一项移动到某个位置，最适合的DOM方法应该是insertBefore()。
+举个栗子：
+
+```javascript
+	//把第一个option往后移一个位置
+	var movedOption = selectbox.options[0];
+	selectbox.insertBefore(movedOption,selectbox.options[movedOption.index+2]);
+```
+
+### 6.富文本编辑 ###
+
+实现方式1：利用iframe
+
+技术的本质是页面中嵌入一个包含空页面的iframe，通过设置designMode属性为on，让这个空白页面可以被编辑，编辑的对象就是空白页面内body元素的HTML代码。
+
+举个栗子：创建一个类似文本框的可编辑区字段
+
+```html
+    <iframe name="richedit" style="height:100px;width:100px;" src="blank.htm"></iframe>
+	<script>
+		window.onload=function(){
+			frames["richedit"].document.designMode="on";
+		};
+	</script>
+```
+
+实现方式2：contenteditable属性
+
+contenteditable属性可以应用给页面中的任何元素，然后用户立即可编辑该元素。它有三个可能的值：true打开，false关闭，inherit从父元素继承。
+
+这种方式的好处是，不需要创建空白页等，且可以便捷地打开或关闭编辑模式。
+
+举个栗子：创建一个可编辑的div
+
+```html
+	<div class="editbox" id="richedit" contenteditable></div>
+	<script>
+		var div=document.getElementById("richedit");
+		div.contenteditable="true";
+	</script>
+```
+
+ **表单与富文本**
+
+富文本编辑是用iframe或者修改其他元素contenteditable属性，而非表单控件实现的，所以富文本的HTML不会被自动提交给服务器，需要手动提取并提交。
+
+通常可以加一个隐藏的表单字段，让它的值等于iframe中提取出来的HTML。在表单提交之前，取出iframe中的HTML，并将其插入到隐藏的字段中。（或者是从contenteditable的元素中提取出）
+
+写个栗子吧，比如说隐藏的字段name为"comments"，给submit事件绑定：
+
+```javascript
+	EventUtil.addHander(form,"submit",function(event){
+		event=EventUtil.getEvent(event);
+		var target=EventUtil.getTarget(event);
+		//这里的target是form
+		target.elements["comments"].value=frames["richedit"].document.body.innerHTML;
+		//如果是contenteditable的元素
+		//target.elements["comments"].value=document.getElementById("richedit").innerHTML;
+	});
+```
+如果想在通过submit()手工提交表单，要记得在form.submit()之前先执行上面的操作。
+
+
+----------
+## 总结 ##
+表单感觉在生产系统中用得蛮多的，尤其是那些mis系统。比如说教务系统、财务报账系统等等。之前对这块，算是半桶水吧，现在学完这部分感觉清楚了不少。后面复习完ajax之后，再来补充一下关于表单序列化这部分的内容。
