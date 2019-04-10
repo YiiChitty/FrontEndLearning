@@ -144,12 +144,16 @@ JS代码如下：
 
 > 一般情况下，加载完毕后就移动到表单第一个字段。
 > 
-> `document.form.elements[0].focus();`
+>```javascript
+>     document.form.elements[0].focus();
+> ```
 > 
 > 但是，这样的话，如果第一个字段是input元素，且type为"hidden",或者使用了display，visibility隐藏了，都会导致错误。<br>
 > H5 提供了一个新的属性： autofocus 。
 > 
-> `<input type="text" id="firstElement" autofocus>`
+> ```html
+>     <input type="text" id="firstElement" autofocus>
+> ```
 > 
 > 为了兼容性考虑，可以用以下方法:
 >  ```javascript
@@ -277,7 +281,7 @@ clipboardData对象有三个方法:
 
 为了保证兼容性，最好是指在发生剪贴板事件的时候才使用clipboardData这个对象，所以需要继续封装EventUtil.js。
 
-```javascrpit
+```javascript
     //剪贴板获取内容
     getClipboardText: function(event) {
        var clipboardData = (event.clipboardData || window.clipboardData);
@@ -300,7 +304,7 @@ clipboardData对象有三个方法:
 还是以 **只接受数字的文本框** 为例：
 需要在paste事件中，判断剪贴板的值是否有效，如果无效就取消它的默认行为。<br/>
 
-```javascrpit
+```javascript
     EventUtil.addHander(textbox, "psate", function(event) {
     	event = EventUtil.getEvent(event);
     	var text = EventUtil.getClipboardText(event);
