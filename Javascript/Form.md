@@ -277,8 +277,7 @@ clipboardData对象有三个方法:
 </ul>
 
 为了保证兼容性，最好是指在发生剪贴板事件的时候才使用clipboardData这个对象，所以需要继续封装EventUtil.js。
-<p>
-<code>javascrpit
+```javascrpit
     //剪贴板获取内容
     getClipboardText: function(event) {
        var clipboardData = (event.clipboardData || window.clipboardData);
@@ -295,13 +294,13 @@ clipboardData对象有三个方法:
     },
 </code>
 </p>
+```
 
 通常要确保粘贴到文本框中的文本包含某些字符或者要求符合某种格式要求的时候，就需要访问剪贴板，再做验证。
 
 还是以 **只接受数字的文本框** 为例：
 需要在paste事件中，判断剪贴板的值是否有效，如果无效就取消它的默认行为。
-<p>
-<code>javascrpit
+```javascrpit
     EventUtil.addHander(textbox, "psate", function(event) {
     event = EventUtil.getEvent(event);
     var text = EventUtil.getClipboardText(event);
@@ -310,8 +309,7 @@ clipboardData对象有三个方法:
     EventUtil.preventDefault(event);
     }
     });
-</code>
-</p>
+```
 
 ### 5.自动切换焦点 ###
 
