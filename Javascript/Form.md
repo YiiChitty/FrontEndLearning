@@ -66,15 +66,14 @@ JS代码如下：<br>
                 // ...
              })
              .done(function() {
-             	alert('提交成功');
-                //成功
+             	//成功
+				alert('提交成功'); 
              })
              .fail(function() {
              	//失败
               	alert('服务器错误');
-
-             // 提交失败 恢复提交按钮的监听
-             bindBtn();
+                // 提交失败 恢复提交按钮的监听
+                bindBtn();
             });
         });
     }
@@ -277,20 +276,20 @@ clipboardData对象有三个方法:
 </ul>
 
 为了保证兼容性，最好是指在发生剪贴板事件的时候才使用clipboardData这个对象，所以需要继续封装EventUtil.js。
+
 ```javascrpit
     //剪贴板获取内容
     getClipboardText: function(event) {
        var clipboardData = (event.clipboardData || window.clipboardData);
        return clipboardData.getData("text");
-    },
-    
+    },  
     //设置剪贴板内容
     setclipboardText: function(event, text) {
-       if (event.clipboardData) { //标准
-       return event.clipboardData.setData("text/plain", text);
-       } else if (window.clipboardData) { //IE
-       return event.clipboardData.setData("text", text);
-       }
+    	if (event.clipboardData) { //标准
+       		return event.clipboardData.setData("text/plain", text);
+       	} else if (window.clipboardData) { //IE
+       		return event.clipboardData.setData("text", text);
+       	}
     },
 </code>
 </p>
@@ -299,18 +298,61 @@ clipboardData对象有三个方法:
 通常要确保粘贴到文本框中的文本包含某些字符或者要求符合某种格式要求的时候，就需要访问剪贴板，再做验证。
 
 还是以 **只接受数字的文本框** 为例：
-需要在paste事件中，判断剪贴板的值是否有效，如果无效就取消它的默认行为。
+需要在paste事件中，判断剪贴板的值是否有效，如果无效就取消它的默认行为。<br/>
+
 ```javascrpit
     EventUtil.addHander(textbox, "psate", function(event) {
-    event = EventUtil.getEvent(event);
-    var text = EventUtil.getClipboardText(event);
-    
-    if (!/^\d*$/.test(text)) {
-    EventUtil.preventDefault(event);
-    }
+    	event = EventUtil.getEvent(event);
+    	var text = EventUtil.getClipboardText(event);
+    	if (!/^\d*$/.test(text)) {
+    		EventUtil.preventDefault(event);
+    	}
     });
 ```
 
-### 5.自动切换焦点 ###
+ **文本框自动切换焦点**
 
 这是表单的一种常见需求，当用户填写完当前字段时，自动将焦点切换到下一个字段。实现自动切换焦点，需要知道用户已经输入了一定长度的数据。
+
+例如，输入手机号，有最大长度分别为3,4,4的三个文本框，再前一个文本框字符达到最大数量后，自动将焦点切换到下一个。
+```html
+    <form action="" name="form">
+    	<input type="text" name="tel1" id="tel1" maxlength="3">
+    	<input type="text" name="tel2" id="tel2" maxlength="4">
+    	<input type="text" name="tel3" id="tel3" maxlength="4">
+    </form>
+```
+
+具体实现方法如下：
+
+```javascript
+(function() {
+	//获取文本框
+    var textbox1 = document.getElementById("tel1");
+    var textbox2 = document.getElementById("tel2");
+    var textbox3 = document.getElementById("tel3");
+	//给文本框绑定事件,释放按键之后进行判断
+    EventUtil.addHander(textbox1, "keyup", tabForward);
+    EventUtil.addHander(textbox2, "keyup", tabForward);
+    EventUtil.addHander(textbox3, "keyup", tabForward);
+	//封装方法
+    function tabForward(event) {
+    	event = EventUtil.getEvent(event);
+    	var target = EventUtil.getTarget(event);
+		//判断是否达到最大长度
+    	if (target.value.length == target.maxLength) {
+    		//获取文本框所在的form,利用form的elements属性定位下一个元素，并设置为焦点
+			var form = target.form;
+    		for (var i = 0; i < form.elements.length; i++) {
+    			if (form.elements[i] == target) {
+    				if (form.elements[i + 1]) {
+    					form.elements[i + 1].focus();
+    				}
+    				return;
+    			}
+    		}
+    	}
+   	}
+})();
+```
+
