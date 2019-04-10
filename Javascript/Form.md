@@ -226,3 +226,93 @@ IE8不支持这种方法，思路大致如下：先用createTextRange()创建一
     }
 ```
 
+ **屏蔽字符**
+
+向文本框插入字符操作的是keypress事件，因此可以通过阻止这个事件的默认行为，来屏蔽掉一些字符符。keypress事件对应的是键盘上的字符编码，所以可以通过检测ASCII码来决定如何响应。
+
+以 **一个只能输入数字的文本框** 为例
+
+1.验证数字：先为keypress事件绑定功能，可以通过EventUtil.getCharCode(event)来获取字符编码，然后使用String.fromCharCode()将字符编码换成字符串，再用正则表达式 “/\d/” 来测试该字符串是是否是数值。
+
+2.避免屏蔽常用键：理论上用户按下字符键才会触发keypress事件，但是FF和Safari3.1-会对上、下、退格、删除键也触发keypress事件。在FF中，非字符触发的keypress字符编码为0；在Safari3-中，非字符触发的字符编码为8.所以不屏蔽字符编码小于10的键即可。
+
+3.避免屏蔽Ctrl+组合热键：除IE外，以上两步完成的代码也会屏蔽掉复制粘贴的热键、还有其他用ctrl进行的组合键，因此还需要加上判断用户是否按下ctrl键。
+
+所以，最终的js代码为： 
+```javascript     
+    EventUtil.addHander(textbox, "keypress", function(event) {
+    	event = EventUtil.getEvent(event);
+    	var target = EventUtil.getTarget(event);
+    	var charCode = EventUtil.getCharCode(event);
+    	if (!/\d/.test(String.fromCharCode(charCode)) && charCode > 9 && !event.ctrlKey) {
+    		//阻止默认行为
+    		EventUtil.preventDefault(event);
+    	}
+    });
+```
+
+>EventUtil的封装代码可以参考Event.md的内容。 
+
+
+ **剪贴板操作**
+
+剪贴板共有6个事件
+
+<ul>
+<li>beforecopy:发生复制操作前触发</li>
+<li>copy：在复制操作时触发</li>
+<li>beforecut：在剪切之前触发</li>
+<li>cut:剪切时触发</li>
+<li>beforepaste:在粘贴之前触发</li>
+<li>paste:在粘贴时触发</li>
+</ul> 
+
+访问剪贴板的数据，可以使用clipboardData对象，在标准浏览器中，这个对象是相应event对象的属性，只在处理剪贴板事件的时候才有效；但在ie中，这个对象是window对象的属性，可以随时访问。
+
+clipboardData对象有三个方法:
+<ul>
+<li>getData(x):取数据，接收要取得的数据格式 IE:text url 标准浏览器：text（实际是MIME类型，text/plain）</li>
+<li>setData(x1,x2):设置数据，第一个参数接收数据格式，第二个参数是要放剪贴板的文本</li>
+<li>clearData():清空剪贴板</li>
+</ul>
+
+为了保证兼容性，最好是指在发生剪贴板事件的时候才使用clipboardData这个对象，所以需要继续封装EventUtil.js。
+<p>
+<code>javascrpit
+    //剪贴板获取内容
+    getClipboardText: function(event) {
+       var clipboardData = (event.clipboardData || window.clipboardData);
+       return clipboardData.getData("text");
+    },
+    
+    //设置剪贴板内容
+    setclipboardText: function(event, text) {
+       if (event.clipboardData) { //标准
+       return event.clipboardData.setData("text/plain", text);
+       } else if (window.clipboardData) { //IE
+       return event.clipboardData.setData("text", text);
+       }
+    },
+</code>
+</p>
+
+通常要确保粘贴到文本框中的文本包含某些字符或者要求符合某种格式要求的时候，就需要访问剪贴板，再做验证。
+
+还是以 **只接受数字的文本框** 为例：
+需要在paste事件中，判断剪贴板的值是否有效，如果无效就取消它的默认行为。
+<p>
+<code>javascrpit
+    EventUtil.addHander(textbox, "psate", function(event) {
+    event = EventUtil.getEvent(event);
+    var text = EventUtil.getClipboardText(event);
+    
+    if (!/^\d*$/.test(text)) {
+    EventUtil.preventDefault(event);
+    }
+    });
+</code>
+</p>
+
+### 5.自动切换焦点 ###
+
+这是表单的一种常见需求，当用户填写完当前字段时，自动将焦点切换到下一个字段。实现自动切换焦点，需要知道用户已经输入了一定长度的数据。
