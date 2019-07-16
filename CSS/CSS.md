@@ -1,10 +1,10 @@
-#CSS
+# CSS
 
 <br/>
 
 ## 三种将CSS样式应用到元素上的方式有什么区别
 
-
+![](https://github.com/YiiChitty/FrontEndLearning/blob/master/img/css_01.png)
 
 
 ## 如何使一个元素脱离标准流
