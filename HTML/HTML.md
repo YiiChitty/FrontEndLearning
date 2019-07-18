@@ -39,7 +39,7 @@ placehoder（提示语）、required（boolean，不能为空）、pattern(正�
 
 - **音频和视频** <br/>
 `<audio>`控制音频，controls属性提供播放暂停音量控件，支持mp3、wav、ogg<br/>
-`<vedio>`控制视频，controls属性提供播放暂停音量控件，也可以用dom操作来控制，如play()、pause();支持多个source元素，每个元素可以链接不同的视频文件，浏览器使用第一个可识别的模式（MP4、WebM、ogg)
+`<video>`控制视频，controls属性提供播放暂停音量控件，也可以用dom操作来控制，如play()、pause();支持多个source元素，每个元素可以链接不同的视频文件，浏览器使用第一个可识别的模式（MP4、WebM、ogg)
 
 - **canvas和svg** <br/>
 
