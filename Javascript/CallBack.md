@@ -161,8 +161,8 @@ let getUserInput=(firstName,lastName,gender,callback)=>{
     }
 }
 //调用
-> getUserInput("Chitty","Zhang","Female",genericSentence)
-Chitty Zhang is the most funny Female in the world.
+> getUserInput("Sarrans","Zhou","female",genericSentence)
+Sarrans Zhou is the most funny female in the world.
 ```
 
 因为getUserInput 函数仅仅只负责提取数据，我们可以把其他回调函数传递给它。
@@ -179,8 +179,6 @@ let welcome=(fullname,sex)=>{
 > getUserInput("George","Chu","man",welcome)
 Hello,Mr. George Chu! Nice to meet you :)
 ```
-
-
 
 ## 回调地狱
 
