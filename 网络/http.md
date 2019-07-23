@@ -109,11 +109,11 @@ HTTP 是基于 TCP 的，每一个 HTTP 请求都需要进行三次握手。如�
 
 **100 Continue** 客户端应重新发请求
 
-**101 Switching Protocols ** 改用协议 http换到https或者http1.1换到2.0之类
+**101 Switching Protocols** 改用协议 http换到https或者http1.1换到2.0之类
 
 #### 2XX：成功
 
-**200 OK ** 操作成功
+**200 OK** 操作成功
 
 **201 Created**按照客户端请求创建了一个新资源
 
