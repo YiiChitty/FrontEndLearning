@@ -122,8 +122,9 @@ Content-XXX：Encoding编码格式 Language使用的语言 Lengthrequest body �
 204 No Content 请求成功，但是报文不含实体的主体部分
 可能情况：1.服务器拒绝请求返回 2.Get资源存在但表示是空的 服务器通过这个响应代码告诉客户端：客户端的输入已被接受，但客户端不应该改变任何UI元素
 
-205 Reset Content 请求成功，但是报文不含实体主题部分，要求客户端重置内容
-区别在于205要求了重置！用一个表单为例，如果提交后返回204，那么表单里的各个字段值不变，可以继续修改它们；但假如得到的响应代码205，那么表单里的各个字段将被重置为它们的初始值。
+205 Reset Content 请求成功，但是报文不含实体主体部分，要求客户端重置内容
+区别在于**205要求了重置**！
+用一个表单为例，如果提交后返回204，那么表单里的各个字段值不变，可以继续修改它们；但假如得到的响应代码205，那么表单里的各个字段将被重置为它们的初始值。
 
 206 Partial Content 进行范围请求
 
@@ -218,7 +219,7 @@ TLS作用于表示层
 
 原理讲完了，那么**TSL的握手过程**就很清晰了
 
-![img](https://user-gold-cdn.xitu.io/2018/5/12/1635260126b3a10c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://github.com/YiiChitty/FrontEndLearning/blob/master/img/http_01.png)
 
 1.客户端发送一个随机值**ClientHello**，并附带上支持的协议和支持的加密方式
 
