@@ -41,13 +41,13 @@ Get能被保存为书签，Post不可以
 
 #### 2.1.1 常用通用首部
 
-cache-control： 控制缓存行为
+**cache-control** ： 控制缓存行为
 
-connection： 连接的性质，比如keep-alive
+**connection** ： 连接的性质，比如keep-alive
 
-user-Agent ：用户信息
+**user-Agent**  ：用户信息
 
-Date：报文创建时间
+**Date** ：报文创建时间
 
 ##### http请求中connection=keep-alive的意义在哪里
 
@@ -55,53 +55,53 @@ HTTP 是基于 TCP 的，每一个 HTTP 请求都需要进行三次握手。如�
 
 ##### http请求中cache-control有哪些参数可以设置
 
-Public:表示任何缓存都可以缓存响应
+**Public** :表示任何缓存都可以缓存响应
 
-private:表示响应仅供单个用户使用，不得由共享高速缓存存储。私有缓存可以存储响应。
+**private** :表示响应仅供单个用户使用，不得由共享高速缓存存储。私有缓存可以存储响应。
 
-no-cache: 强制缓存在发布缓存副本之前将请求提交到源服务器以进行验证。
+**no-cache** : 强制缓存在发布缓存副本之前将请求提交到源服务器以进行验证。
 
-no-store: 缓存不应存储有关客户端请求或服务器响应的任何内容。
+**no-store**: 缓存不应存储有关客户端请求或服务器响应的任何内容。
 
 还有一些关于到期时间、重新验证加载的，具体可以参看[MDN文档](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control)
 
 #### 2.1.2 常用请求首部
 
-Referrer Policy: 表示来源的（浏览器所访问的前一个页面）,可以用于辅助检测crsf攻击，一般浏览器的默认值是**no-referrer-when-downgrade**，意思是https降级http的时候不传原地址。（[完整说明看MDN文档](https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Headers/Referrer-Policy)）
+**Referrer Policy** : 表示来源的（浏览器所访问的前一个页面）,可以用于辅助检测crsf攻击，一般浏览器的默认值是**no-referrer-when-downgrade**，意思是https降级http的时候不传原地址。（[完整说明看MDN文档](https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Headers/Referrer-Policy)）
 
-Accept: 能正确接收的媒体类型
+**Accept** : 能正确接收的媒体类型
 
-Accept-XX(Accept-Charset/Accept-Encoding/Accept-Language):能正确接收的xx
+**Accept-XX**(Accept-Charset/Accept-Encoding/Accept-Language):能正确接收的xx
 
-Expect:期待服务端的指定行文
+**Expect** :期待服务端的指定行文
 
-If-Match:两端资源标记比较
+**If-Match** :两端资源标记比较
 
-If-Modified-Since: 比较时间 未修改返回304
+**If-Modified-Since** : 比较时间 未修改返回304 Not Modified
 
-If-None-Match:比较标记 未修改返回304
+**If-None-Match** :比较标记 未修改返回304 Not Modified
 
 #### 2.1.3 常用响应首部
 
-Location： 重定向到某个location
+**Location** : 重定向到某个location
 
-Server: 服务器名字
+**Server** : 服务器名字
 
-Age:响应存在时间
+**Age** :响应存在时间
 
-Accept-Ranges：可以接受的范围类型
+**Accept-Ranges** ：可以接受的范围类型
 
 #### 2.1.4 常用实体首部
 
-Content-Type：内容媒体类型
+**Content-Type**：内容媒体类型
 
-Expires：内容过期时间
+**Expires** ：内容过期时间
 
-Last_modified：最后修改时间
+**Last_modified** ：最后修改时间
 
-Allow：资源正确请求方式
+**Allow**：资源正确请求方式
 
-Content-XXX：Encoding编码格式 Language使用的语言 Lengthrequest body 长度MD5加密格式的内容 MD5检验值等
+**Content-XXX** ：Encoding编码格式 Language使用的语言 Lengthrequest body 长度MD5加密格式的内容 MD5检验值等
 
 ### 2.2 状态码
 
@@ -109,21 +109,22 @@ Content-XXX：Encoding编码格式 Language使用的语言 Lengthrequest body �
 
 **100 Continue** 客户端应重新发请求
 
-**101 Switching Protocols **改用协议 http换到https或者http1.1换到2.0之类
+**101 Switching Protocols ** 改用协议 http换到https或者http1.1换到2.0之类
 
 #### 2XX：成功
 
-**200 OK **操作成功
+**200 OK ** 操作成功
 
-**201 Created** 按照客户端请求创建了一个新资源
+**201 Created**按照客户端请求创建了一个新资源
 
 **202 Accepted** 请求无法或不被实时处理
 
 **204 No Content** 请求成功，但是报文不含实体的主体部分
 
 >  No Content可能的情况：
-> 1.服务器拒绝请求返回 2.Get资源存在但表示是空的 
-> 服务器通过这个响应代码告诉客户端：客户端的输入已被接受，但客户端不应该改变任何UI元素
+>  1.服务器拒绝请求返回 
+>  2.Get资源存在但表示是空的 
+>  服务器通过这个响应代码告诉客户端：客户端的输入已被接受，但客户端不应该改变任何UI元素
 
 **205 Reset Content** 请求成功，但是报文不含实体主体部分，要求客户端重置内容
 
@@ -142,7 +143,7 @@ Content-XXX：Encoding编码格式 Language使用的语言 Lengthrequest body �
 
 **307 Temporary Redirect** 临时重定向，资源临时分配了URL，但是希望客户端能够保持方法不变请求新地址（解决302被当成303处理的问题）
 
-**304 Not Modified **允许访问资源，但实体主体为空（客户端已经有此数据，不需要再次发送）
+**304 Not Modified ** 允许访问资源，但实体主体为空（客户端已经有此数据，不需要再次发送）
 
 > 304需要特别说明一下，以免误解。
 >
@@ -156,25 +157,25 @@ Content-XXX：Encoding编码格式 Language使用的语言 Lengthrequest body �
 
 **4XX：客户端错误**
 
-400 Bad Request 请求报文语法错误
+**400 Bad Request**  请求报文语法错误
 
-401Unauthorized 发送的请求需要通过验证，客户端试图对一个受保护的资源操作但没有认证证书
+**401 Unauthorized**  发送的请求需要通过验证，客户端试图对一个受保护的资源操作但没有认证证书
 
-403 Forbidden 请求资源存在但被拒绝，常用于一个资源只允许在特定时间段内访问（如果不想透露可以谎报404）
+**403 Forbidden**  请求资源存在但被拒绝，常用于一个资源只允许在特定时间段内访问（如果不想透露可以谎报404）
 
-404 Not Found 找不到请求的资源
+**404 Not Found** 找不到请求的资源
 
-405 Method Not Allowed 不支持的请求方法，比如只支持Get，但是收到了Post请求
+**405 Method Not Allowed**  不支持的请求方法，比如只支持Get，但是收到了Post请求
 
 **5XX：服务端错误**
 
-500 Internal Server Error：执行请求时发生错误（处理异常）
+**500 Internal Server Error** 执行请求时发生错误（处理异常）
 
-501Not Implemented 不支持此请求方法（和405区别在于，405是访问的资源不支持，而501表示服务器不能操作此方法）
+**501 Not Implemented**  不支持此请求方法（和405区别在于，405是访问的资源不支持，而501表示服务器不能操作此方法）
 
-502 Bad Gateway 代理与上行服务器之间出现问题
+**502 Bad Gateway**  代理与上行服务器之间出现问题
 
-503 Service Unavailable 服务器暂时处于超负荷或者维护中
+**503 Service Unavailable** 服务器暂时处于超负荷或者维护中
 
 ### 2.3 Http协议中的长短连接和长短轮询
 
@@ -240,25 +241,26 @@ TLS作用于表示层
 2.服务端收到随机值**ClientHello**，产生一个随机值**ServerHello**，根据客户端需求的协议返回，从客户端支持的堆成加密算法中选一个作为最终通讯的算法，并发送自己的CA证书
 
 3.客户端收到服务器CA证书、协商的通讯加密算法、随机值**ServerHello**，验证通过后再生成第三个随机值**预主密钥Pre-Master**，用CA证书公钥加密后发送给服务端（如果需要验证证书，还要附带上证书）。
-本地用三个随机值+协商的加密算法，合成最终通讯的密钥。
-change_cipher_spec Finished 客户端握手结束
+**用三个随机值+协商的加密算法，合成最终通讯的密钥** 。
+change_cipher_spec Finished 客户端握手结束通知。
 
-4.服务端收到加密过的随机值之后，私钥解密获得第三个随机值**预主密钥Pre-Master**。使用第1、2步中协商的对称加密算法和三个随机值合成最终的协商密钥。
-change_cipher_spec Finished服务器握手结束通知。
+4.服务端收到加密过的随机值之后，**私钥** 解密获得第三个随机值**预主密钥Pre-Master** 。
+**使用第1、2步中协商的对称加密算法+三个随机值合成最终的协商密钥** 。
+change_cipher_spec Finished 服务器握手结束通知。
 
 5.此时两端都有了最终的协商密钥了，接来下的传输就使用这个密钥加密解密。
 
 
 
-所以，在**TLS 握手阶段，两端使用非对称加密的方式来通信**，但是因为非对称加密损耗的性能比对称加密大，所以**在正式传输数据时，两端传输其实是使用对称加密的方式通信**。
+所以，在**TLS 握手阶段，两端使用非对称加密的方式来通信** ，但是因为非对称加密损耗的性能比对称加密大，所以**在正式传输数据时，两端传输其实是使用对称加密的方式通信** 。
 
 
 
 ### 3.2 Https的缺点？
 
-1. 通信两端都需要进行加密和解密，会消耗大量的CPU、内存等资源，增加了服务器的负载
-2. 加密运算和多次握手降低了访问速度
-3. 在开发阶段，加大了页面调试难度。由于信息都被加密了，所以用代理工具的话，需要先解密然后才能看到真实信息
+1. 通信两端都需要进行加密和解密，会**消耗** 大量的CPU、内存等**资源** ，**增加了服务器的负载**
+2. 加密运算和多次握手**降低了访问速度**
+3. 在开发阶段，**加大了页面调试难度** 。由于信息都被加密了，所以用代理工具的话，需要先解密然后才能看到真实信息
 4. 用HTTPS访问的页面，页面内的外部资源都得用HTTPS请求，包括脚本中的AJAX请求
 
 ### 3.3 HTTPS 的单向认证和双向认证
@@ -272,16 +274,16 @@ change_cipher_spec Finished服务器握手结束通知。
 
 1. 先决条件是有2个或者2个以上的证书，一个服务器证书，其它是客户端证书
 2. 服务器保存着客户端的证书并信任该证书，客户端保存着服务器的证书并信任该证书。这样，在证书验证成功的情况下即可完成请求响应
-3. 双向认证一般用于企业应用对接
+3. 双向认证一般用于企业应用对接（比如说堡垒机hh）
 
 ## 5.回到面试的问题：http和https有什么区别？
 
-1. HTTP是超文本传输协议，信息是明文传输，HTTPS则是具有安全性的SSL加密传输协议
-2. HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443
-3. HTTP的连接很简单，是无状态的；HTTPS协议是由**TSL**协议进行了加密，比HTTP协议安全
-4. HTTPS协议需要CA申请证书，一般免费证书比较少，因而需要一定费用
+1. HTTP是超文本传输协议，信息是**明文传输** ，HTTPS则是具有安全性的SSL加密传输协议
+2. HTTP和HTTPS使用的是完全不同的连接方式，用的**端口也不一样，前者是80，后者是443**
+3. HTTPS协议需要CA申请证书，一般免费证书比较少，因而需要一定费用
+4. HTTP的连接很简单，是无状态的；HTTPS协议是由**TSL**协议进行了加密，比HTTP协议安全
 
-需要补充说明TSL协议吗？
+请问需要补充说明TSL协议吗？
 
 ​	TSL协议两种加密方式 、原理 、握手过程
 
@@ -363,10 +365,11 @@ http2.0是对http1.0的改进，相较于http1.0更快更高效
 
 3 http2.0**压缩头部**，使**用序号对头部编码，在两端备份索引表，通过对编码进行比较来判断是否需要传输，减少了需要传输的大小**。解决了http1.0中头部反复传输资源浪费的问题
 
-4 http2.0中，服务器可以在客户端某个请求后，**主动推送一些其他客户端一定需要的资源**。这样也能减少请求的数目。
+4 http2.0中，服务器可以在客户端某个请求后，**主动推送一些客户端一定需要的资源** 。这样也能减少请求的数目。
 
 当然http2.0也不是尽善尽美的，比如说在出现丢包的情况时，需要重新传输，后面的数据也就被阻塞了，但是http1.0因为有多个连接，所以不会影响其他连接的传输。这样的话http2.0的性能反倒不如http1.0了。
 
 但这个是TCP的问题了，要说改TCP也不太实际。不过也有解决方案，基于QUIC协议的http3.0就解决了这个问题，需要简单描述一下吗？
 
 ​	QUIC的简单描述：多路复用（ID识别）、纠错机制
+
