@@ -369,9 +369,9 @@ Generator的特点，一句话概括就是：**可以随心所欲的交出和恢
 
 因为generator可以在执行过程中多次返回，所以它看上去就像一个可以记住执行状态的函数，利用这一点，写一个generator就可以实现需要用面向对象才能实现的功能。
 
-generator还有另一个巨大的好处，就是把异步回调代码变成“同步”代码。这个好处要等到后面学了AJAX以后才能体会到。
+generator还有另一个巨大的好处，就是把异步回调代码变成“同步”代码。
 
-没有generator之前的黑暗时代，用AJAX时需要这么写代码：
+没有generator之前的黑暗时代，用Ajax时需要这么写代码：
 
 ```javascript
 ajax('http://url-1', data1, function (err, result) {
@@ -407,7 +407,6 @@ try {
 catch (err) {
     handle(err);
 }
-
 ```
 
 看上去是同步的代码，实际执行是异步的。
