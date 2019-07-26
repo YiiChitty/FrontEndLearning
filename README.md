@@ -17,7 +17,7 @@ leetcode日常刷题可以前往另一个repository：[传送门](https://github
 
 ### 第一部分  HTML
 #### [HTML](https://github.com/YiiChitty/FrontEndLearning/blob/master/HTML/HTML.md)  
-#### HTML5
+#### HTML5   
 
 
 
@@ -36,7 +36,7 @@ leetcode日常刷题可以前往另一个repository：[传送门](https://github
 
 #### DOM  
 
-#### [异步]([https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/%E5%BC%82%E6%AD%A5.md](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/异步.md))  
+#### [异步](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/异步.md)  
 
 - [回调函数](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/CallBack.md)
 - [Promise](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/Promise.md)
