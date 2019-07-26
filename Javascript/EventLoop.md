@@ -284,7 +284,9 @@ process.nextTick(() => {
 
 
 
-#### 最后做道练习题
+#### 最后几道练习题
+
+先来一道最简单的：
 
 ```javascript
 console.log('a');
@@ -303,3 +305,173 @@ console.log('f');
 //输出是 a c f d e b
 ```
 
+进入复杂模式：
+
+```javascript
+async function async1() {
+  console.log('1')
+  const data = await async2()
+  console.log(data)
+  console.log('2')
+}
+
+async function async2() {
+  return new Promise(function (resolve) {
+    console.log('3')
+    resolve('await的结果')
+  }).then(function (data) {
+    console.log('4')
+    return data
+  })
+}
+console.log('5')
+
+setTimeout(function () {
+  console.log('6')
+}, 0)
+
+async1()
+
+new Promise(function (resolve) {
+  console.log('7')
+  resolve()
+}).then(function () {
+  console.log('8')
+})
+console.log('9')
+// 输出：
+// 5-1-3-7-9-4-8-await的结果-2-6
+// 分析：
+// 前面定义了俩async函数，直到console开始执行
+// 1.控制台输出5
+// 2.setTimeout进入下一轮事件循环
+// 3.执行async1，输出1，进入等待，等待执行async2 的结果
+//							   执行async2,promise立即执行，返回3，then进微任务队列1 async2 then
+// 4.执行同步的promise,输出7， then进入微任务队列2 promise then
+// 5.执行同步的控制台输出9
+// 6.开始按顺序执行微任务，async2.then 输出 4；promise.then 输出 8
+// 7.回到async1等待的位置，输出data(await的结果),输出2
+// 8.执行setTimeout，输出6
+```
+
+超复杂模式：
+
+```javascript
+setTimeout(function () {
+  console.log('1')
+}, 0)
+
+async function async1() {
+  console.log('2')
+  const data = await async2()
+  console.log('3')
+  return data
+}
+
+async function async2() {
+  return new Promise(resolve => {
+    console.log('4')
+    resolve('async2的结果')
+  }).then(data => {
+    console.log('5')
+    return data
+  })
+}
+
+async1().then(data => {
+  console.log('6')
+  console.log(data)
+})
+
+new Promise(function (resolve) {
+  console.log('7')
+  resolve()
+}).then(function () {
+  console.log('8')
+})
+// 输出：
+//2-4-7-5-8-3-6-async2结果-1
+
+// 分析：
+// setTimeout进入一下轮事件循环
+// 1.执行async1，输出2，等待执行async2的结果，
+// 					  执行async2，输出4，然后把 then 放入微任务队列 1.执行async2.then
+// 2.执行同步的Promise，输出7，然后把then 放入微任务队列 2.执行执行promise.then
+// 3.按输出执行微任务，执行saync2.then，输出5；执行promise.then 输出8
+// 4.回到async1的awit 输出3
+// 5.执行async1的then 输出6 输出data(async2的结果)
+// 6.执行setTimeout 输出1
+```
+
+### 之前遇到的疑问好像还没解决
+
+上面出现过的一个问题
+
+```javascript
+async function a(){
+ 	console.log("a1") 
+ 	const data = await b();
+    console.log("a2");
+	console.log(data);
+}
+async function b(){
+ 	console.log("b");
+	return "1";
+}
+a();
+new Promise(resolve=>{
+	console.log('promise');
+	resolve()}
+	).then(()=>{
+		console.log("promise1");
+	}).then(()=>{
+		console.log( "promise2");
+});
+
+//这段代码在老版浏览器的输出顺序是
+//a1 b promise promise1 promise2 a2 1
+//但在新版浏览器的输出顺序是
+//a1 b promise a2 1 promise1 promise2 
+//感觉似乎有点违反规则
+```
+
+我又做了如下实验
+
+```javascript
+async function a(){
+	console.log("a1");
+	const data =await b();
+	console.log("a2");
+	console.log(data);
+}
+async function b(){
+	return new Promise(function (resolve) {
+    console.log('b');
+	resolve();
+  })
+}
+a();
+new Promise(resolve=>{
+    console.log("promise");
+	resolve();
+	}).then(()=>{
+    	console.log("promise1")
+	}).then(()=>{
+    console.log("promise2")
+});
+//在老版浏览器中的结果：
+//a1 b promise 
+//a()返回了一个Promise，且状态是PENDING
+
+//在新版浏览器中的结果：
+//a1 b promise promise1 promise2 a2
+//a()返回了一个Promise，状态是undefined
+```
+
+**exo me？？？？？**
+
+所以从66-75版本，到底做了什么改变呢？？？
+
+真的是令人费解……
+
+好想知道答案。
