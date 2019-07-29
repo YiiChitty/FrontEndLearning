@@ -1,6 +1,109 @@
 # Javascript原生实现
 
-为面试做准备，每次面试前速看一遍
+为面试做准备，每次面试前必须速看一遍!
+
+## 防抖
+
+```javascript
+function debounce=(func,wait)=>{
+    let timer=0;
+    return function(...args){
+        if(timer){
+            clearTimeout(timer);
+        }
+        timer=setTimeout(()=>{
+            func.apply(this,args);
+        },wait)
+    }
+}
+```
+
+加上立即执行选项：
+
+```javascript
+function debounce=(func,wait,immediate){
+    let timer,context,args;
+    const later=()=>{
+        setTimeout(()=>{
+        	timer=null
+            if(!immediate){
+                func.apply(context,args);
+                context=args=null;
+            }
+        },wait)
+    }
+    
+    return function(...params){
+        if(timer){
+            timer=later();
+            if(immediate){
+                func.apply(this,params);
+            }else{
+                context=this;
+                args=params;
+            }
+        }else{
+            clearTimeout(timer);
+            timer=later();
+        }
+    }
+}
+```
+
+## 节流
+
+```javascript
+function throttle(func,wait,option){
+    let last；
+    return function(...args){
+        let now+=new Date();
+        if(!last||now>last+wait){
+            last=now;
+            func.apply(this,args);
+        }
+    }
+}
+```
+
+补充 选项设置
+
+```javascript
+function throttle(func,wait,option){
+    let context,args,result;
+    var timeout=null;
+    var last=0;
+    if(!option) option={}
+    var later=function(){
+        //设置了首次不执行，置为0
+        last=option.leading===false? 0:now();
+        timeout=null;
+        result=func.apply(context,args)
+        if(!timeout) context=args=null;
+    };
+    return function (){
+        var now=+new Date();
+        //设置了首次不执行，首次进入没有last
+        if(!last&&option.leading===false) last=now;
+        var remaining=wait-(now-last);
+        context=this;
+        args=arguments;
+        //当前调用大于上次调用时间
+        if (remaining<=0||remaining>wait){
+        	if(timeout){
+                clearTimeout(timeout);
+                timeout=null;
+            }
+            last=now;
+            result=func.apply(context,args);
+            if(!timeout) context=args=null;
+        }else if(!timeout && option.trailing !==false){
+            //没有定时器，且设置了最后一次不触发
+            timeout=setTimeout(later,remaining);
+        }
+        return result;
+    };
+}
+```
 
 ## 手写Promise
 

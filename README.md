@@ -36,6 +36,9 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 #### ES6   
 #### BOM   
 #### DOM   
+
+#### [防抖节流](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/防抖节流.md)
+
 #### [异步](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/异步.md)  
 
 - [回调函数](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/CallBack.md)
@@ -59,7 +62,11 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 #### [HTTP](https://github.com/YiiChitty/FrontEndLearning/blob/master/%E7%BD%91%E7%BB%9C/http.md)  
 #### 从输入URL到页面加载经历了什么  
 
+  
+
+
 ### 第五部分 浏览器
+
 #### 浏览器基础  
 #### 浏览器缓存  
 #### 浏览器渲染  
@@ -71,12 +78,15 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
 ### 第八部分 前端安全
 
+
+
 ### 第九部分 设计模式
+
+
 
 ### 第十部分 数据结构与算法
 
    
-
 
 
 
