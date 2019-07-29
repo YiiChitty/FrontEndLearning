@@ -37,6 +37,8 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 #### BOM   
 #### DOM   
 
+#### [常用方法原理](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/JS常用方法原理.md)
+
 #### [防抖节流](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/防抖节流.md)
 
 #### [异步](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/异步.md)  
