@@ -27,9 +27,13 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 #### HTML5  
 
 
+
+
 ### 第二部分 CSS
 #### [css](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/CSS.md)  
 #### css3  
+
+
 
 ### 第三部分 JavaScript
 #### Javascript基础  
@@ -50,6 +54,9 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 - [定时器](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/定时器.md)
 - [回调地狱解决](https://github.com/YiiChitty/FrontEndLearning/tree/master/Javascript)
 #### [EventLoop](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/EventLoop.md)  
+
+#### [垃圾回收机制](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/垃圾回收机制.md)
+
 #### [前后端交互](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/前后端数据交互.md)
 
 #### [关于Form](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/Form.md)  
@@ -66,17 +73,27 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
   
 
-
 ### 第五部分 浏览器
+
+#### [跨域](https://github.com/YiiChitty/FrontEndLearning/blob/master/浏览器/跨域CORS.md)
 
 #### 浏览器基础  
 #### 浏览器缓存  
-#### 浏览器渲染  
+#### 浏览器渲染    
+
+  
+
 
 ### 第六部分 MVC、MVP、MVVM
-#### MVC、MVP、MVVM  
+#### MVC、MVP、MVVM    
+
+  
+
 
 ### 第七部分 前端性能优化
+
+  
+
 
 ### 第八部分 前端安全
 
