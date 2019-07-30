@@ -36,9 +36,9 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 ### [布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/布局.md)
 
 - [七种方式实现三栏布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/用7种方式实现三栏布局.md)
-- 垂直居中
-- 水平居中
-- flex
+- [垂直居中](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/垂直居中.md)
+- [水平居中](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/水平居中.md)
+- [Flex](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/Flex.md)
 
 <br/>
 
