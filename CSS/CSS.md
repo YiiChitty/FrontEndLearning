@@ -202,7 +202,7 @@ CSS中的`content`属性主要用于伪元素`:before/:after`中。
   }
   ```
 
-  [效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/基础/AmazingPadding.html)
+  [效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/Base/AmazingPadding.html)
 
   > 用的是github的htmlpreview.github.io，等待时间会较长，页面在**CSSWorld**这个Repository下。
 
@@ -331,7 +331,7 @@ div:nth-child(5){
 
 其实就是将其他三个边框的颜色设置透明，并把宽高设为 0 。图中4-5两个图形，是通过调整边框宽度和颜色调整三角形的形状，把最后一个图的红色改为蓝色，则是一个直角三角形了。
 
-[效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/基础/AmazingBorder.html)
+[效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/Base/AmazingBorder.html)
 
 > 用的是github的htmlpreview.github.io，等待时间会较长，页面在**CSSWorld**这个Repository下。
 
@@ -388,7 +388,7 @@ css中除了`px/em/rem`等，还有个单位是`ex`。指的就是小写字母x�
 
   字母x上下行距各占一半，共同撑起了`div`。
 
-  [效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/基础/Line-height垂直居中.html)
+  [效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/Base/Line-height垂直居中.html)
 
   ```html
   <div>
@@ -415,7 +415,7 @@ css中除了`px/em/rem`等，还有个单位是`ex`。指的就是小写字母x�
 
   `div`元素的高度仍然和上图一模一样，由字母x和行距共同撑起。此时如果删除字母x，`div`的高度不变，因为`span`元素的行框盒子前会产生幽灵空白节点，而幽灵空白节点+行高也能撑起`div`。
 
-  [效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/基础/line-height和vertical-align垂直居中.html)
+  [效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/Base/line-height和vertical-align垂直居中.html)
 
 - 内联元素的大值特性
 
@@ -561,7 +561,7 @@ css中除了`px/em/rem`等，还有个单位是`ex`。指的就是小写字母x�
 </style>
 ```
 
-[效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/基础/vertical-align实现水平垂直居中弹窗.html)
+[效果预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/Base/vertical-align实现水平垂直居中弹窗.html)
 
 原理就是container设置了`text-align: center`，使得内部div实现了水平居中；创建了伪类，`display: inline-block;height: 100%;vertical-align: middle`;之后内部div又inline-block变成了内联元素，通过`vertical-align: middle`实现了垂直居中。
 
