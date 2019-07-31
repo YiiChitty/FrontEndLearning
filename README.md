@@ -5,16 +5,22 @@
 
 ​																										—— 2019.04.09
 
+<br/>
+
 ## 简介
 
 此项目内容为：**前端的学习与总结**  
 这里记录了从7.15开始正式为找工作准备每一天的学习情况，完整展现了Chitty在前端日常复习、学习的过程。学习永无止尽，此项目会一直更新下去，期待与你共同进步。  
 后面有一个关于我经历的小故事，如果你有兴趣，欢迎阅读，希望能给迷茫的你一点鼓舞。  
 
+<br/>
+
+面试笔试准备题目（纯题目，无原理分析）可以前往另一个repository：传送门
+
 
 LeetCode日常刷题可以前往另一个repository：[传送门](https://github.com/YiiChitty/leetcode-practice)
 
-​      
+<br/>
 
 ------
 
@@ -24,21 +30,22 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
 ### 第一部分  HTML
 #### [HTML](https://github.com/YiiChitty/FrontEndLearning/blob/master/HTML/HTML.md)  
-#### HTML5  
+#### HTML5新特性 
 
 <br/>
 
 
 ### 第二部分 CSS
 #### [css基础](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/CSS.md)  
-#### css3  
-
 ### [布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/布局.md)
 
 - [七种方式实现三栏布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/用7种方式实现三栏布局.md)
 - [垂直居中](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/垂直居中.md)
 - [水平居中](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/水平居中.md)
 - [Flex](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/Flex.md)
+- [BFC](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/BFC.md)
+
+### CSS3新特性
 
 <br/>
 
@@ -48,7 +55,7 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 #### BOM   
 #### DOM   
 
-#### [常用方法原理](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/JS常用方法原理.md)
+#### [常用方法原理与原生实现](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/JS常用方法原理.md)
 
 #### [防抖节流](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/防抖节流.md)
 
@@ -64,7 +71,7 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
 #### [垃圾回收机制](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/垃圾回收机制.md)
 
-#### [前后端交互](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/前后端数据交互.md)
+#### [前后端数据交互](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/前后端数据交互.md)
 
 #### [关于Form](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/Form.md)  
 
@@ -76,7 +83,7 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 #### [网络基础](https://github.com/YiiChitty/FrontEndLearning/blob/master/%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C.md)  
 #### [TCP与UDP](https://github.com/YiiChitty/FrontEndLearning/blob/master/%E7%BD%91%E7%BB%9C/UDP%20and%20TCP.md)  
 #### [HTTP](https://github.com/YiiChitty/FrontEndLearning/blob/master/%E7%BD%91%E7%BB%9C/http.md)  
-#### 从输入URL到页面加载经历了什么  
+#### [从输入URL到页面加载经历了什么](https://github.com/YiiChitty/FrontEndLearning/blob/master/网络/输入 URL 到页面渲染的整个流程.md)
 
   <br/>
 
@@ -84,25 +91,26 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
 #### [跨域](https://github.com/YiiChitty/FrontEndLearning/blob/master/浏览器/跨域CORS.md)
 
-#### 浏览器基础  
-#### 浏览器缓存  
-#### 浏览器渲染    
+#### [浏览器存储](https://github.com/YiiChitty/FrontEndLearning/blob/master/浏览器/浏览器存储.md)
+#### [浏览器渲染](https://github.com/YiiChitty/FrontEndLearning/blob/master/浏览器/浏览器渲染.md)
 
   <br/>
 
 
 ### 第六部分 MVC、MVP、MVVM
-#### MVC、MVP、MVVM    
+#### [MVC、MVP、MVVM](https://github.com/YiiChitty/FrontEndLearning/blob/master/MVVM/MVVM.md)    
 
   <br/>
-
 
 ### 第七部分 前端性能优化
 
+#### [性能优化](https://github.com/YiiChitty/FrontEndLearning/tree/master/性能优化)
+
   <br/>
 
-
 ### 第八部分 前端安全
+
+#### [前端安全与防范](https://github.com/YiiChitty/FrontEndLearning/blob/master/安全/前端的安全防范.md)
 
 <br/>
 
@@ -144,4 +152,5 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
 ​		虽然有小鸡汤文的感觉（也不太符合”程序员“的形象了吧…），但如果能给阅读到的你一份鼓励或者有些微的触动，那就再好不过了。
 
-​																															——Chitty   2019.07 
+——2019.07  Chitty  
+

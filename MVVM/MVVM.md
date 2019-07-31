@@ -46,7 +46,7 @@ MVC也是一种设计思想，主要就是MVC中的Controlled演变成MVVM中的
 
 ## 数据的双向绑定
 
-![数据双向绑定](https://github.com/YiiChitty/FrontEndLearning/blob/master/img/MVVM_04.png)
+![数据双向绑定](https://github.com/YiiChitty/FrontEndLearning/blob/master/img/MVVM_04.webp)
 
 利用`Object.defineProperty()`对数据进行劫持，设置一个监听器`Observer`，用来监听所有属性，如果属性上发生变化了，就需要告诉订阅者`Watcher`去更新数据，最后指令解析器`Compile`解析对应的指令，进而会执行对应的更新函数，从而更新视图，实现双向绑定。
 
