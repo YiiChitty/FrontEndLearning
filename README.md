@@ -50,8 +50,8 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 <br/>
 
 ### 第三部分 JavaScript
-#### Javascript基础  
-#### ES6   
+#### [Javascript基础](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/JS基础.md)
+#### [ES6](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/ES6.md)   
 #### BOM   
 #### DOM   
 
