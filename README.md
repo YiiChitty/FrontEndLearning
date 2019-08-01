@@ -26,18 +26,16 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
 
 
-## 目录
+## 学习与总结目录
 
 ### 第一部分  HTML
 #### [HTML](https://github.com/YiiChitty/FrontEndLearning/blob/master/HTML/HTML.md)  
 #### HTML5新特性 
 
-<br/>
-
 
 ### 第二部分 CSS
 #### [css基础](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/CSS.md)  
-### [布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/布局.md)
+#### [布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/布局.md)
 
 - [七种方式实现三栏布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/用7种方式实现三栏布局.md)
 - [垂直居中](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/垂直居中.md)
@@ -45,9 +43,7 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 - [Flex](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/Flex.md)
 - [BFC](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/BFC.md)
 
-### CSS3新特性
-
-<br/>
+#### CSS3新特性
 
 ### 第三部分 JavaScript
 #### [Javascript基础](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/JS基础.md)
@@ -77,15 +73,11 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
 #### [关于正则表达](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/正则表达.md)    
 
-<br/>
-
 ### 第四部分 网络
 #### [网络基础](https://github.com/YiiChitty/FrontEndLearning/blob/master/%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C.md)  
 #### [TCP与UDP](https://github.com/YiiChitty/FrontEndLearning/blob/master/%E7%BD%91%E7%BB%9C/UDP%20and%20TCP.md)  
 #### [HTTP](https://github.com/YiiChitty/FrontEndLearning/blob/master/%E7%BD%91%E7%BB%9C/http.md)  
 #### [从输入URL到页面加载经历了什么](https://github.com/YiiChitty/FrontEndLearning/blob/master/网络/输入URL到页面渲染的整个流程.md)
-
-  <br/>
 
 ### 第五部分 浏览器
 
@@ -94,31 +86,21 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 #### [浏览器存储](https://github.com/YiiChitty/FrontEndLearning/blob/master/浏览器/浏览器存储.md)
 #### [浏览器渲染](https://github.com/YiiChitty/FrontEndLearning/blob/master/浏览器/浏览器渲染.md)
 
-  <br/>
-
 
 ### 第六部分 MVC、MVP、MVVM
 #### [MVC、MVP、MVVM](https://github.com/YiiChitty/FrontEndLearning/blob/master/MVVM/MVVM.md)    
-
-  <br/>
 
 ### 第七部分 前端性能优化
 
 #### [性能优化](https://github.com/YiiChitty/FrontEndLearning/tree/master/性能优化)
 
-  <br/>
-
 ### 第八部分 前端安全
 
 #### [前端安全与防范](https://github.com/YiiChitty/FrontEndLearning/blob/master/安全/前端的安全防范.md)
 
-<br/>
-
 ### 第九部分 设计模式
 
 
-
-<br/>
 
 ### 第十部分 数据结构与算法
 
