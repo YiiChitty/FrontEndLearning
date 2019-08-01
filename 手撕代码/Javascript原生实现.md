@@ -46,14 +46,14 @@ Function.prototype.myBind=function(context){
         throw new TypeError('Error');
     }
     const _this=this;
-    const args=[...arguments].slice();
+    const args=[...arguments].slice(1);
     //返回一个函数
     return function F(){
         //通过new的方式
         if(this instanceof F){
             return new _this(...args,...arguments)
         }
-        return _this.apply(context,args,conct(...arguments));
+        return _this.apply(context,args,concat(...arguments));
     }
 }
 ```
