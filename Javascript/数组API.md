@@ -190,7 +190,7 @@ console.log(arrCopy4); //[5, 7, 9]
 
 用于从数组末尾查找第一次出现时的索引，如果没有就返回-1
 
-- **includes()**
+- **includes()**--ES7新增
 
 判断当前数组是否包含某个指定的值，如果有返回true,否则false
 
@@ -260,5 +260,60 @@ var sum = values.reduceRight((prev, cur, index, array) => {
 },10);
 console.log(sum); //25
 //初始值是10，然后累加，得到25
+```
+
+- **find()**--ES6新增
+
+返回数组中第一个满足条件的元素，没有返回-1。
+
+```js
+[1, 2, 3, 4, 5].find((item) => {return item > 3}) //4
+```
+
+- **findIndex()**--ES6新增
+
+返回数组中的满足条件元素的索引，没有就返回-1。
+
+- **keys()**--ES6新增
+- **values**--ES6新增
+- **entries**--ES6新增
+
+keys()返回一个数组索引的迭代器；values返回一个数组迭代器对象，包含数组中每个索引的值。entries()返回一个数组迭代器对象，该对象包含数组中每个索引的键值对。
+
+```js
+var arr=['a', 'b', 'c']
+for(let key of arr.keys()){
+    console.log(key)//0,1,2     
+}               
+for(let value of arr.values()){
+    console.log(value)//a,b,c 
+}               
+for(let [key, value] of arr.entries()){
+    console.log([key,value])//[0,'a'],[1,'b'],[2,'c']
+} 
+```
+
+
+
+### 其他
+
+- Array.form()
+
+把一些集合或者长得像数组的伪数组转化为真的数组，比如arguments，ES6的Set，js选择器找到的dom集合，以及一些对象模拟的数组。
+
+```js
+Array.from(obj / arguments / 伪数组) //返回的是一个数组
+[].slice.call(arguments, 0) //这种方式根from方法是一样的效果
+
+//Array.from还有第二个参数，是一个回掉函数，功能类似map
+Array.from( [1, 2, 3], item => item * 2 )//[2,4,6]
+```
+
+- Array.of()
+
+把参数合并成一个数组返回，如果参数为空，则返回一个空数组
+
+```js
+Array.of(1,2,3,4,5);//[1,2,3,4,5]
 ```
 
