@@ -26,7 +26,7 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
 
 
-## 学习与总结目录
+## 学习总结篇目录
 
 ### 第一部分  HTML
 #### [HTML](https://github.com/YiiChitty/FrontEndLearning/blob/master/HTML/HTML.md)  
@@ -40,6 +40,7 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 - [七种方式实现三栏布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/用7种方式实现三栏布局.md)
 - [垂直居中](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/垂直居中.md)
 - [水平居中](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/水平居中.md)
+- 清除浮动的方法总结
 - [Flex](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/Flex.md)
 - [BFC](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/BFC.md)
 
@@ -104,7 +105,9 @@ LeetCode日常刷题可以前往另一个repository：[传送门](https://github
 
 ### 第十部分 数据结构与算法
 
-   
+#### [数组API总结](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/数组API.md)
+
+#### [字符串API总结](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/字符串操作API.md)
 
 <br/><br/><br/>
 
