@@ -196,3 +196,22 @@ function myInstanceof(left,right){
 - 首先获取类型的原型
 - 然后获得对象的原型
 - 然后一直循环判断对象的原型是否等于类型的原型，直到对象原型为 `null`，因为原型链最终为 `null`
+
+## 多参数柯里化
+
+```js
+function progressCurrying(fn,args){
+    var _this=this;
+    var len=fn.length;
+    var args=args||[];
+    return function (){
+        var _args=Array.prototype.slice.call(arguments).concat(args);
+        //参数个数小于最初的fn.length，则继续递归调用
+        if(_args.length<len){
+            return progressCurrying.call(_this,fn,args);
+        }
+        return fn.apply(this,_args);
+    }
+}
+```
+
