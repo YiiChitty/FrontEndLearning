@@ -2,7 +2,7 @@
 
 Block Formatting Context, 块级格式化上下文，它是一个独立的渲染区域，只有Block-level Box参与，它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。
 
-文档流分 、定位流、浮动流和 普通流 三种。而普通流其实就是指 BFC 中的 FC。
+文档流分定位流、浮动流和 普通流 三种。而普通流其实就是指 BFC 中的 FC。
 
 FC直译过来是格式化上下文，它是**页面中的一块渲染区域**，有一套渲染规则，决定了其**子元素如何布局，以及和其他元素之间的关系和作用**。
 
@@ -38,41 +38,83 @@ BFC是页面上的一个隔离的独立容器，容器里面的子元素不会�
 5. BFC 就是页面上一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
 6. 计算 BFC 的高度时，浮动元素参与计算。
 
+接下来分别去试一下：
+
 ### BFC 布局规则1：内部的 Box 会在垂直方向， 一个接一个地放置
-
-上文定义中提到过的块级盒：`Block-level Box` 到底是什么意思呢？
-
-[![img](https://camo.githubusercontent.com/e0345f37556fdb1b8067aa56f03049c751e6d78a/68747470733a2f2f6c632d676f6c642d63646e2e786974752e696f2f62383038303164383730376265323465636263303f696d61676556696577322f302f772f313238302f682f3936302f666f726d61742f776562702f69676e6f72652d6572726f722f31)](https://camo.githubusercontent.com/e0345f37556fdb1b8067aa56f03049c751e6d78a/68747470733a2f2f6c632d676f6c642d63646e2e786974752e696f2f62383038303164383730376265323465636263303f696d61676556696577322f302f772f313238302f682f3936302f666f726d61742f776562702f69676e6f72652d6572726f722f31)
-
-我们平常说的盒子是由 margin、border、padding、content组成的，实际上每种类型的四条边定义了一个盒子，分别是`content box`、`padding box`、`border box`、`margin box`，这四种类型的盒子一直存在，即使他们的值为0。决定块盒在包含块中与相邻块盒的垂直间距的便是 `margin-box`。
-
-**提示**：Box 之间的距离虽然也可以使用 padding 来控制，但是此时实际上还是属于 box 内部里面，而且使用 padding 来控制的话就不能再使用 border 属性了。
 
 布局规则1就是我们**平常div一行一行块级放置的样式**。
 
+```html
+ <div class="container">
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+	<div class="box4"></div>
+ </div>
+```
+
+```css
+.container{
+    /*构建BFC*/
+	position: absolute;
+	height: auto;
+}
+.box3{
+    float: left;
+}
+```
+
+![BFC rule1](https://github.com/YiiChitty/FrontEndLearning/blob/master/img/BFC_01.png)
+
+这里只写了关键的样式，我在另一个资源库上传了具体的代码，可以从这里[预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/BFC/testRule01.html)到截图的页面。
+
 ### BFC 布局规则2：Box 垂直方向的距离由 margin 决定。属于同一个 BFC 的两个相邻 Box 的 margin 会发生重叠
 
-[![img](https://camo.githubusercontent.com/b687e06ee4ed40b24786e19ace9c568778801a36/68747470733a2f2f6c632d676f6c642d63646e2e786974752e696f2f36623066633065336433346639343837356433352e6769663f696d61676556696577322f302f772f313238302f682f3936302f666f726d61742f776562702f69676e6f72652d6572726f722f31)](https://camo.githubusercontent.com/b687e06ee4ed40b24786e19ace9c568778801a36/68747470733a2f2f6c632d676f6c642d63646e2e786974752e696f2f36623066633065336433346639343837356433352e6769663f696d61676556696577322f302f772f313238302f682f3936302f666f726d61742f776562702f69676e6f72652d6572726f722f31)
+决定块级盒在包含块中与相邻块盒的垂直间距的是margin-box。在常规的文档流中，两个兄弟盒子之间的垂直距离是由他们的外边距所决定的，但是不是外边距之和，而是以较大的那个为准。
 
-上文提到过，决定块级盒在包含块中与相邻块盒的垂直间距的便是 `margin-box`。上面的例子就是这种情况。
+在BFC内部也是这样：
 
-演示中 css 属性设置：上面的 box：`margin-bottom: 100px; `下面的 box：`margin-top: 100px;`（他们是同一侧的 margin，所以会发生 margin 重叠的情况，两个 div 的距离实际上只有 100px。）
+```html
+<div class="container">
+	<div class="box1"></div>
+	<div class="box2"></div>
+</div>
+```
 
-这个时候 **BFC 的作用 4：阻止 margin 重叠** 就派上了用场：
+```css
+.container {
+	overflow: hidden;/*构建一个bfc*/
+}
+.box1 {
+    margin: 10px 0;
+}
+.box2 {
+	margin: 20px 0;
+}
+```
 
-当两个相邻块级子元素**分属于不同的 BFC 时可以阻止 margin 重叠**。
+以上依旧只写了关键代码，效果是box1和box2的间隔为20px，效果如下：
 
-**操作方法**：给其中一个 div 外面包一个 div，然后通过触发外面这个 div 的 BFC，就可以阻止这两个 div 的 margin 重叠，具体触发方式可以参考上文给出的触发条件。
+![BFC rule2](https://github.com/YiiChitty/FrontEndLearning/blob/master/img/BFC_02.png)
+
+浏览器环境[预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/BFC/testRule02.html)
+
+不过，也并非没有办法解决，特性5就说了容器里面的子元素不糊印象外面元素，给box1或者box2处于不同的BFC就可以了。
+
+**结论：**当两个相邻块级子元素**分属于不同的 BFC 时可以阻止 margin 重叠**。
+
+**操作方法**：给其中一个 div 外面包一个 div，然后通过触发外面这个 div 的 BFC，就可以阻止这两个 div 的 margin 重叠。
+
+写法很简单，文章内就不多写了，可以直接[点此预览](http://htmlpreview.github.io/?https://github.com/YiiChitty/CSSWorld/blob/master/BFC/testRule02solve.html)
 
 ### BFC 布局规则3：每个元素的 margin box 的左边，与包含块 border-box 的左边相接触（对于从左向右的格式化，否则相反）。即使存在浮动也是如此。
 
-```
+```html
 <div class="par">
     <div class="child"></div>
-    // 给这两个子div加浮动，浮动的结果，如果没有清除浮动的话，父div不会将下面两个div包裹， 
-    // 但还是在父div的范围之内。
     <div class="child"></div>
 </div>
+// 给这两个子div加浮动，浮动的结果，如果没有清除浮动的话，父div不会将下面两个div包裹,但还是在父div的范围之内。
 ```
 
 **解析**：给这两个子 div 加浮动，浮动的结果，如果没有清除浮动的话，父 div 不会将下面两个 div 包裹，但还是在父 div 的范围之内，**左浮动是子 div 的左边接触父 div 的 border-box 的左边，右浮动是子 div 的左边接触父 div 的 border-box 的右边**，除非设置 margin 来撑开距离，否则一直是这个规则。
@@ -111,7 +153,7 @@ IE 作为浏览器中的奇葩，当然不可能按部就班的支持 BFC 标准
 
 **文本环绕 float**：
 
-```
+```html
 <div style="float: left; width: 100px; height: 100px; background: #000;">
 </div>
 <div style="height: 200px; background: #AAA;">
@@ -120,7 +162,7 @@ IE 作为浏览器中的奇葩，当然不可能按部就班的支持 BFC 标准
 </div>
 ```
 
-[![img](https://camo.githubusercontent.com/da242010b700a41d0d08987119a8763e6a46d74a/68747470733a2f2f6c632d676f6c642d63646e2e786974752e696f2f63303262323339366439383766346437343339613f696d61676556696577322f302f772f313238302f682f3936302f666f726d61742f776562702f69676e6f72652d6572726f722f31)](https://camo.githubusercontent.com/da242010b700a41d0d08987119a8763e6a46d74a/68747470733a2f2f6c632d676f6c642d63646e2e786974752e696f2f63303262323339366439383766346437343339613f696d61676556696577322f302f772f313238302f682f3936302f666f726d61742f776562702f69676e6f72652d6572726f722f31)
+![BFC_wordsfloat](https://github.com/YiiChitty/FrontEndLearning/blob/master/img/BFC_wordsfloat.webp)
 
 问题：为什么灰色背景的 div 左上角被覆盖后，红色 div 被覆盖，但是文本却没有被覆盖？
 
@@ -130,6 +172,16 @@ IE 作为浏览器中的奇葩，当然不可能按部就班的支持 BFC 标准
 
 float 属性定义元素在哪个方向上浮动。以往这个属性总应用于图像，**使文本围绕在图像周围**，不过在 CSS 中，**任何元素都可以浮动**。浮动元素会生成一个块级框，而不论它本身是何种元素。
 
-[![img](https://camo.githubusercontent.com/662c674ef0368cdaef05f1a2f24bd97ae24d3773/68747470733a2f2f6c632d676f6c642d63646e2e786974752e696f2f35393934656431316562633365346239373164622e6769663f696d61676556696577322f302f772f313238302f682f3936302f666f726d61742f776562702f69676e6f72652d6572726f722f31)](https://camo.githubusercontent.com/662c674ef0368cdaef05f1a2f24bd97ae24d3773/68747470733a2f2f6c632d676f6c642d63646e2e786974752e696f2f35393934656431316562633365346239373164622e6769663f696d61676556696577322f302f772f313238302f682f3936302f666f726d61742f776562702f69676e6f72652d6572726f722f31)
+![BFC_float](https://github.com/YiiChitty/FrontEndLearning/blob/master/img/BFC_float.webp)
 
 从上图可以看到，float 属性确实生效，将 float 隐藏后，下面还有一个红色的 div，这个 div 是被黑色 div 所覆盖掉的。**div 会被 float 覆盖，而文本却没有被 float 覆盖**，是因为 **float 当初设计的时候就是为了使文本围绕在浮动对象的周围。**
+
+
+
+## 块级盒Block-level Box到底是啥？
+
+![BFC_box](https://github.com/YiiChitty/FrontEndLearning/blob/master/img/BFC_Box.webp)
+
+我们平常说的盒子是由 margin、border、padding、content组成的，实际上每种类型的四条边定义了一个盒子，分别是`content box`、`padding box`、`border box`、`margin box`，这四种类型的盒子一直存在，即使他们的值为0。决定块盒在包含块中与相邻块盒的垂直间距的便是 `margin-box`。
+
+**提示**：Box 之间的距离虽然也可以使用 padding 来控制，但是此时实际上还是属于 box 内部里面，而且使用 padding 来控制的话就不能再使用 border 属性了。
