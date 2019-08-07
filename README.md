@@ -10,7 +10,7 @@
 ## 简介
 
 此项目内容为：**前端学习总结和就业准备**  
-这里记录了Chitty从7月15日从项目中退出，开始正式为找工作准备的每一天学习总结。这里也会更新Chitty每次面试笔试后对自己的反思总结。
+这里记录了Chitty从7月15日从项目中退出，开始正式为找工作准备的学习与总结，由浅入深，一步步地补齐完善自己的知识树。这里也会更新Chitty每次面试笔试后对自己的反思总结。
 
 近期“补足短板计划”学习内容：
 
@@ -126,7 +126,7 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 
 ### 基础准备
 
-[HTML+CSS](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/HTML%2BCSS 面经问题.md)
+[HTML+CSS](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/HTML%2BCSS.md)
 
 [JavaScript](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/JS面试准备.md)
 
@@ -148,7 +148,7 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 
 [剑指Offer](https://github.com/YiiChitty/FrontEndLearning/blob/master/手撕代码/剑指offer题目.md)
 
-[笔试面试中的题目](https://github.com/YiiChitty/FrontEndLearning/blob/master/手撕代码/剑指offer题目.md)
+[笔试面试中的题目](https://github.com/YiiChitty/FrontEndLearning/blob/master/手撕代码/面试笔试中遇到的题.md)
 
 ### 面经
 
