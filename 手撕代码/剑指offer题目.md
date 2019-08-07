@@ -38,7 +38,16 @@ function match(s, pattern)
 
 ### 2.替换空格
 
-```javascript
+请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
 
+```javascript
+//正则表达
+function replaceSpace(str){
+    return str.replace(new RegExp(/\s/g),'%20');
+}
 ```
+
+### 3.表示数值的字符串
+
+请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串"+100","5e2","-123","3.1416"和"-1E-16"都表示数值。 但是"12e","1a3.14","1.2.3","+-5"和"12e+4.3"都不是。
 
