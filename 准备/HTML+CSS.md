@@ -3,10 +3,13 @@
 ##  1.html中的meta标签是用来做什么的？
 提供给机器解读的一些元数据。页面搜索引擎优化，定义页面实用语言等等。
 属性有两个
+
 1）**http-equiv+content**
 
 参数有charset(编码格式)、expires(过期时间)、refresh(特定时间内自动刷新跳转)、pragma(禁止浏览器从本地计算机缓存中访问页面内容no-cache)、widows-target(设定页面在窗口中以独立页面展示，防止被当成frame页调用)、set-cookie(自定义cooke)、content-Type(字符集)
+
 2）**name+content**
+
 参数有keywords(关键字)、description(主要内容)、robots(none不被检索)、author、generator(使用的制作软件)、copyright、viewport(缩放比例)
 
 
