@@ -288,7 +288,7 @@ API这里的说明已经非常明确了，不用再考虑了
 
 最后，提供一些相关的资料供你参考：
 
-[知乎问题：querySelectorAll 方法相比 getElementsBy 系列方法有什么区别](https://www.zhihu.com/question/24702250)
+[知乎问题：querySelectorAll 方法相比 getElementsBy 系列方法有什么区别](https://www.zhihu.com/question/24702250)  
 
 [querySelector和getElementById性能分析与使用选择](https://blog.csdn.net/hualimeme/article/details/44410895)
 
