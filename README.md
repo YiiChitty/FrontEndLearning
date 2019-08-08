@@ -36,6 +36,7 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 ## 探索篇目录
 
 1. [对获取DOM的N种方法性能的思考](https://github.com/YiiChitty/FrontEndLearning/blob/master/一些思考/关于获取DOM节点的思考.md)
+2. [虚拟DOM真的能提升性能吗？](https://github.com/YiiChitty/FrontEndLearning/blob/master/一些思考/虚拟DOM真的能提升性能吗？.md)
 
 <br/>
 
