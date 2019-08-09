@@ -2,7 +2,7 @@
 
 今天早上看别人的面经，看到了一个非常有意思的问题：
 
-> 问：`getElementById、getElementByName、getElementByTagname、querySelectAll、querySelect`在性能上有什么差别？
+> 问：`getElementById、getElementByName、getElementByTagname、querySelectorAll、querySelector`在性能上有什么差别？
 
 
 
