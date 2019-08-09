@@ -234,3 +234,22 @@ src将资源嵌入到当前文档中，在请求src资源时会将其指向的�
 ## 20.什么是Shadow DOM?
 
 Shadow DOM是浏览器的一种功能，能自动添加子元素，比如radio元素的controls，这些相关元素由浏览器生成。
+
+
+
+## 21.为什么要强调CSS要放在header里，js放在尾部？
+
+> ### DOMContentLoaded 和 load
+>
+> - DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片...
+> - load 事件触发时，页面上所有的DOM，样式表，脚本，图片都已加载完成
+
+构建Render树需要DOM和CSSOM，所以**HTML和CSS都会阻塞渲染**。所以需要让CSS**尽早加载**（如：放在头部），以**缩短首次渲染的时间**。
+
+阻塞浏览器的解析，也就是说发现一个外链脚本时，**需等待脚本下载完成并执行后才会继续解析HTML**。
+
+普通的脚本会阻塞浏览器解析，**加上defer或async属性，脚本就变成异步，可等到解析完毕再执行**
+
+- async异步执行，异步下载完毕后就会执行，不确保执行顺序，一定在onload前，但不确定在DOMContentLoaded事件的前后
+- defer延迟执行，相当于放在body最后（理论上在DOMContentLoaded事件前）
+
