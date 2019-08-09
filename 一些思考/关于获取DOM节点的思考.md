@@ -28,7 +28,7 @@
 
 2.`getElementsByTagName`比`querySelectorAll`快的原因在于：`getElementsByTagName`创建的过程不需要做任何操作，只需要返回一个指针即可。而`querySelectorAll`会循环遍历所有的的结果，然后创建一个新的NodeList。
 
-3.实际在用的过程中**取决于要获取的是什么**，再进行选择。
+3.实际在用的过程中**取决于要获取的是什么**，再进行选择。  
 
 
 
