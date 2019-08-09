@@ -152,7 +152,7 @@ console.timeEnd('getElementsByTagName');
 我试着打印出了上面的c变量（`getElementsByTagName`)
 
 ```
-0: p#p1.p1
+0: p#p1
 1: p
 2: p
 length: 3
@@ -173,8 +173,8 @@ c[0]===c.p1 //true
 那么，`NodeList`又长啥样呢？（`querySelectorAll`）
 
 ```
-NodeList(3) [p#p1.p1, p, p]
-0: p#p1.p1
+NodeList(3) [p#p1, p, p]
+0: p#p1
 1: p
 2: p
 length: 3
@@ -199,8 +199,8 @@ __proto__: NodeList
 再次打印，发现出来了不一样的结果
 
 ```js
-d //NodeList(3) [p#p1.p1, p, p]
-c //HTMLCollection(4) [p#p1.p1, p, p, p, p1: p#p1.p1, p2: p, p3: p, p4: p]
+d //NodeList(3) [p#p1, p, p]
+c //HTMLCollection(4) [p#p1, p, p, p, p1: p#p1, p2: p, p3: p, p4: p]
 ```
 
 似乎……**`HTMLCollection`是动态的，NodeList是静态的**！
