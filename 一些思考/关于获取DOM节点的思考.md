@@ -278,13 +278,13 @@ API这里的说明已经非常明确了，不用再考虑了
 
 动态的NodeList返回的更快是因为不需要获取这个节点的所有信息，而静态的需要。`getElementsByTagName`创建的过程不需要做任何操作，只需要返回一个指针即可。而`querySelectorAll`会循环遍历所有的的结果，然后创建一个新的NodeList。
 
-所以这才是`getElementsByTagName`比`querySelectorAll`快的真正原因！
+所以这才是`getElementsByTagName`比`querySelectorAll`快的真正原因！  
 
-
+<br/>
 
 好了，通过一圈的探索下来，我算是搞明白了，不知道读到这篇文章的你有没有看明白呢？
 
-
+<br/>
 
 最后，提供一些相关的资料供你参考：
 
