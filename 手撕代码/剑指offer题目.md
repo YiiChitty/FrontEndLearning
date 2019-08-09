@@ -333,3 +333,160 @@ function pop()
 
 ## 递归
 
+### 1.斐波拉契数列
+
+大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
+
+n<=39
+
+```js
+//递归方法
+function Fibonacci(n){
+    if(n<=0) return 0;
+    if(n===1) return 1;
+    return Fibonacci(n-1)+Fibonacci(n-2);
+}
+```
+
+这样做的话效率很低，其实做的过程中的中间数都是重复的，把中间值保存一下，需要计算的时候查找，就能解决这个问题。
+
+```js
+function Fibonacci(n){
+    let res=[0,1];
+    if(n<=1){return res[n];}
+    let n1=0,n2=1;
+    let tmp;
+    for(let i=2;i<=n;i++){
+        tmp=n1+n2;
+        n1=n2;
+        n2=tmp;
+    }
+    return tmp;
+}
+```
+
+#### 变种题 青蛙跳台阶
+
+一只青蛙一次可以跳1级台阶或者2级台阶，求问该青蛙跳上一个n级台阶有多少种跳法。
+
+其实就是斐波拉契数列，因为n级台阶的跳法看成是n的函数，f(n)。那么有两种跳法，一种只跳1级，即f(n-1);一种跳两级，即f(n-2)。那么f(n)=f(n-1)+f(n-2)。
+
+```js
+function jumpFloor(number)
+{
+    let result=[0,1,2];
+    if(number<=2){return result[number];}
+    let res;
+    let n1=1,n2=2;
+    for(let i=3;i<=number;i++){
+        res=n1+n2;
+        n1=n2;
+        n2=res;
+    }
+    return res;
+}
+```
+
+#### 拓展
+
+一只青蛙可以跳1级、2级……n级。此时青蛙跳上一个n级的台阶有多少种跳法。
+
+数学归纳法是f(n)=2^(n-1)
+
+```js
+function jumpFloorII(number)
+{
+    return Math.pow(2,number-1);
+}
+```
+
+不过,用位运算更快
+
+```js
+function jumpFloorII(number)
+{
+    return 1<<(--number);
+}
+```
+
+#### 变种题2 覆盖矩形
+
+可以用`2*1`的小矩形横着或者竖着去覆盖大矩形。请问用8个`2*1`的小矩形无重叠覆盖一个`2*8`的大矩阵总共有多少种方法？
+
+先把`2*8`的覆盖方法记为f(8)，用第一个覆盖时，可以横着或者竖着。竖着放的时候，还剩下`2*7`的矩形，记为f(7)。横着放的时候，另一个也只能横着放，还剩下`2*6`的矩形，记为f(6)。所以还是斐波那契数列。
+
+```js
+function rectCover(number)
+{
+    let res=[0,1,2];
+    if(number<=2){return res[number];}
+    let tmp,n1=1,n2=2;
+    for(let i=3;i<=number;i++){
+        tmp=n1+n2;
+        n1=n2;
+        n2=tmp;
+    }
+    return tmp;
+}
+```
+
+## 查找排序
+
+> 如果面试题是要求在排序数组或者部分排序数组中找一个数字或者统计某个数字的出现次数，都可以用二分查找。
+
+### 1.旋转数组的最小数字
+
+把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
+
+思路：
+
+暴力破解其实也挺快的，但是算法复杂度为O(n)。这样肯定不够优雅。
+
+优雅的解题思路是，把旋转之后的数组看做是两个排序的子数组，而且前面子数组的元素都大于或者等于后面子数组的元素。最小的元素就是这两个子数组的分界线。
+
+可以用两个指针首尾二分法查找，以上面的数组为例，开始指针指向3,2。二分法中间为5,大于3,它一定位于递增数列第一个子数组。把头部指针指向5。此时位于中间的1，小于2，位于递增数组第二个子数组，尾指针指向1。此时指针差为1，输出尾指针的元素即可。
+
+特殊情况是当中间三个数的数值都一样的时候，那只能遍历输出了。
+
+```js
+function minNumberInRotateArray(rotateArray)
+{
+    let start=0,end=rotateArray.length-1;//记录下标
+    let middle=0;
+    while(rotateArray[start]>=rotateArray[end]){
+        if(end-start==1){
+            middle=end;
+            break;
+        }
+        middle=Math.floor((end+start)/2);
+        if(rotateArray[middle]>=rotateArray[start]){
+            start=middle;
+        }else if(rotateArray[middle]<=rotateArray[end]){
+            end=middle;
+        }
+        //如果下标start end middle的值一样，那只能顺序查找了
+        if(rotateArray[start]===rotateArray[middle]&&rotateArray[start]===rotateArray[end]){
+            let res=rotateArray[start];
+            for(let i=start+1;i<=end;i++){
+                if(res>rotateArray[i]){
+                    res=rotateArray[i];
+                }
+            }
+            return res;
+        }
+    }
+    return rotateArray[middle];
+}
+```
+
+常规算法思路是上面这样，但在js中可以利用数组的API来计算……但这样就没啥意思了不是么。
+
+```js
+function minNumberInRotateArray(rotateArray)
+{
+   return Math.min(...rotateArray);
+}
+```
+
+## 回溯法
+
