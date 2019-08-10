@@ -411,7 +411,7 @@ new Promise(function (resolve) {
 async function a(){
  	console.log("a1") 
  	const data = await b();
-    console.log("a2");
+    	console.log("a2");
 	console.log(data);
 }
 async function b(){
@@ -516,6 +516,6 @@ function f() {
 如果传递给 await 的值已经是一个 Promise，那么这种优化避免了再次创建 Promise 包装器，在这种情况下，我们从最少三个 microtick 到只有一个 microtick。
 
 好像有点明白了。  
-也就是说，当await回调函数里传给它的已经是一个Promise，那么久避免了再次创建，引起也不再需要为await创造throwawayPromise。所以引擎什么都不需要做，安排 PromiseReactionJob 在 microtask 队列的下一个 tick 上恢复异步函数，暂停执行该函数，然后返回给调用者就好了。  
+也就是说，当await回调函数里传给它的已经是一个Promise，那么就避免了再次创建，引擎也不再需要为await创造throwawayPromise。所以引擎什么都不需要做，安排 PromiseReactionJob 在 microtask 队列的下一个 tick 上恢复异步函数，暂停执行该函数，然后返回给调用者就好了。  
 
 orz……虽说弄明白是咋回事了，但还是觉得……好复杂。
