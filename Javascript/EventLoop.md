@@ -472,10 +472,11 @@ new Promise(resolve=>{
 
 所以从66-75版本，到底做了什么改变呢？？？
 
----更新----
-v8团队的说明我看到了，在73版本之后，就进行了这个更新，但可惜……我没太看懂。
-这个是V8团队文档的地址：[更快的异步函数和 Promise](https://v8.js.cn/blog/fast-async/)
-结论是:
+---更新----  
+
+v8团队的说明我看到了，在73版本之后，就进行了这个更新，但可惜……我没太看懂。  
+这个是V8团队文档的地址：[更快的异步函数和 Promise](https://v8.js.cn/blog/fast-async/)  
+结论是:  
 V8团队做了两个优化，使得awit变快了，并鼓励js开发者使用async和await替代手写的promise，以及坚持js引擎提供的原生promise实现，以避免在awit中使用额外的两个microtick。
 
 对优化的内容，我着实没有看明白，只知道如果awit的回调函数里面手写了promise的话，它会在后面的promise.then之后再执行。如果里面没有promise，那就会先执行。
