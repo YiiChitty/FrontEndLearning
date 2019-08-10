@@ -446,7 +446,7 @@ async function a(){
 }
 async function b(){
 	return new Promise(function (resolve) {
-    console.log('b');
+        console.log('b');
 	resolve();
   })
 }
@@ -472,6 +472,49 @@ new Promise(resolve=>{
 
 所以从66-75版本，到底做了什么改变呢？？？
 
-真的是令人费解……
+---更新----
+v8团队的说明我看到了，在73版本之后，就进行了这个更新，但可惜……我没太看懂。
+这个是V8团队文档的地址：[更快的异步函数和 Promise](https://v8.js.cn/blog/fast-async/)
+结论是:
+V8团队做了两个优化，使得awit变快了，并鼓励js开发者使用async和await替代手写的promise，以及坚持js引擎提供的原生promise实现，以避免在awit中使用额外的两个microtick。
 
-好想知道答案。
+对优化的内容，我着实没有看明白，只知道如果awit的回调函数里面手写了promise的话，它会在后面的promise.then之后再执行。如果里面没有promise，那就会先执行。
+= =  
+这个结论我通过实验就已经试出来了好伐。
+
+不过这并没有阻挡我继续探索的脚步，我在csdn上看到了这篇还不错的博客：[一次性弄懂EvnetLoop](https://blog.csdn.net/weixin_34259559/article/details/87951513)
+
+似乎这里有一个我看得懂的解释：
+区别在于RESOLVE(thenable)和Promise.resolve(thenable)
+文中是说，在73版本以下的谷歌浏览器中，传递给 await 的值被包裹在一个 Promise 中。然后，处理程序附加到这个包装的 Promise，以便在 Promise 变为 fulfilled 后恢复该函数，并且暂停执行异步函数，一旦 promise 变为 fulfilled，恢复异步函数的执行。那么这样的话，每个 await 引擎必须创建两个额外的 Promise（即使右侧已经是一个 Promise）并且它需要至少三个 microtask 队列 ticks。
+
+这篇文章引用了一个例子
+
+```javascript
+async function f() {
+  await p
+  console.log('ok')
+}
+```
+
+可以被简化理解为：
+
+```javascript 
+function f() {
+  return RESOLVE(p).then(() => {
+    console.log('ok')
+  })
+}
+```
+
+如果 RESOLVE(p) 对于 p 为 promise 直接返回 p 的话，那么 p的 then 方法就会被马上调用，其回调就立即进入 job 队列。
+而如果 RESOLVE(p) 严格按照标准，应该是产生一个新的 promise，尽管该 promise确定会 resolve 为 p，但这个过程本身是异步的，也就是现在进入 job 队列的是新 promise 的 resolve过程，所以该 promise 的 then 不会被立即调用，而要等到当前 job 队列执行到前述 resolve 过程才会被调用，然后其回调（也就是继续 await 之后的语句）才加入 job 队列，所以时序上就晚了。
+
+但是在73版本及之后的版本中：
+使用对PromiseResolve的调用来更改await的语义，以减少在公共awaitPromise情况下的转换次数。
+如果传递给 await 的值已经是一个 Promise，那么这种优化避免了再次创建 Promise 包装器，在这种情况下，我们从最少三个 microtick 到只有一个 microtick。
+
+好像有点明白了。
+也就是说，当await回调函数里传给它的已经是一个Promise，那么久避免了再次创建，引起也不再需要为await创造throwawayPromise。所以引擎什么都不需要做，安排 PromiseReactionJob 在 microtask 队列的下一个 tick 上恢复异步函数，暂停执行该函数，然后返回给调用者就好了。
+
+orz……虽说弄明白是咋回事了，但还是觉得……好复杂。
