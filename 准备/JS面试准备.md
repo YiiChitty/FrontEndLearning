@@ -152,3 +152,41 @@ async函数返回的是一个promise对象，await用于等待一个async函数�
 执行微任务之后，如果有必要会重新渲染页面
 
 然后一下轮执行宏任务中异步代码，比如说setTimeout的回调函数。
+
+
+
+## 19.数组API有哪些？
+
+直接修改原数组的：push(),unshift(),  pop(),shift(), splice() ,reverse(), sort()  fill(x,start,end) copyWithin(tochangeindex,changestart,changeend)
+
+返回新数组的： concat(),slice()
+
+返回字符串： join()
+
+位置或是否在数组内： indexOf() lastindexOf() includes()是否包括 find()满足条件的索引;
+
+遍历方法：forEach()所有元素执行一次，返回undefined;map()返回值新数组;filter()返回通过元素的新数组 ;every()所有都满足返回true;some()只要有一个元素满足就返回true；reduce(fn(pre,cur,index,arr),basevalue)累加器;reduceRight()从右边往左边加
+
+迭代器：arr.keys()返回索引迭代器；arr.values()返回迭代器，值；arr.entries()返回键值对。
+
+
+
+## 20.sort方法底层如何排序？
+
+谷歌浏览器：大于22的数组 快排；小于22的用插入排序
+
+火狐浏览器：归并排序
+
+webkit：用的c++的qsort();
+
+
+
+## 21. 模块化CommonJS AMD CMD ES6Module的区别
+
+CommonJS 一个单独的文件就是一个模块，主要运行与服务器端，同步加载模块。require输入其他模块提供的功能，module.exports规范模块对外接口，输出一个值的拷贝。输出之后不能改变，会缓存起来。
+
+AMD 异步加载，一个单独文件一个模块，主要运行于浏览器端，模块和模块的依赖可以被异步加载。define定义模块，require用于输入其他模块提供的功能，return规范模块对外接口，define.amd是一个对象，表明函数遵守AMD规范。AMD的运行逻辑是，提前加载，提前执行，申明依赖模块的时候，会第一时间加载并执行模块内的代码，使后面的回调函数能在所需的环境中运行。
+
+CMD 通用模块。一个文件一个模块。主要在浏览器中运行，define全局函数，定义模块，通过exports向外提供接口，用require获取接口，使用某个组件时用use()调用。通过require引入的模块，只有当程序运行到这里时候才会加载执行。
+
+UMD 通用模块。解决commonJS和AMD不能通用的问题。define.amd存在，执行AMD规范；module.exports,执行CommonJS规范；都没有，原始代码规范。
