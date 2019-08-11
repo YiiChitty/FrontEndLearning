@@ -490,3 +490,132 @@ function minNumberInRotateArray(rotateArray)
 
 ## 回溯法
 
+### 1.矩阵中的路径
+
+请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串"bcced"的路径，但是矩阵中不包含"abcb"路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。
+
+思路：
+
+首先，在矩阵中任选一个格子作为路径的起点。如果路径上的第i个字符不是ch，那么这个格子不可能处在路径上的第i个位置。如果路径上的第i个字符正好是ch，那么往相邻的格子寻找路径上的第i+1个字符。除在矩阵边界上的格子之外，其他格子都有4个相邻的格子。
+
+重复这个过程直到路径上的所有字符都在矩阵中找到相应的位置。由于回朔法的递归特性，路径可以被开成一个栈。当在矩阵中定位了路径中前n个字符的位置之后，在与第n个字符对应的格子的周围都没有找到第n+1个字符，这个时候只要在路径上回到第n-1个字符，重新定位第n个字符。
+
+由于路径不能重复进入矩阵的格子，还需要定义和字符矩阵大小一样的布尔值矩阵，用来标识路径是否已经进入每个格子。 当矩阵中坐标为（row,col）的
+格子和路径字符串中相应的字符一样时，从4个相邻的格子(row,col-1),(row-1,col),(row,col+1)以及(row+1,col)中去定位路径字符串中下一个字符。如果4个相邻的格子都没有匹配字符串中下一个的字符，表明当前路径字符串中字符在矩阵中的定位不正确，我们需要回到前一个，然后重新定位。
+　　一直重复这个过程，直到路径字符串上所有字符都在矩阵中找到合适的位置。
+
+```js
+function hasPath(matrix, rows, cols, path)
+{
+    if(path.length===0) return true;
+    if(rows*cols< path.length) return false;
+    
+    let status=[];
+    for(let i=0;i<rows;i++){
+        status.push([]);
+        for(let j=0;j<cols;j++){
+            status[i][j]=false;
+        }
+    }
+    //找到第一个符合的path
+    for(let i=0;i<rows;i++){
+        for(let j=0;j<cols;j++){
+            if(matrix[i*cols+j]===path[0]){
+                if(path.length===1){
+                    return true;
+                }
+                status[i][j]=true;
+                if(find(matrix,rows,cols,i,j,path.slice(1),status)){
+                    return true;
+                }
+                status[i][j]=false;
+            }
+        }
+    }
+    return false;
+}
+
+function find(matrix,rows,cols,row,col,path,status){
+    if(row>0 && matrix[(row-1)*cols+col]===path[0]&&status[row-1][col]===false){
+        if(path.length===1){
+            return true;
+        }
+        status[row-1][col]=true;
+        if(find(matrix,rows,cols,row-1,col,path.slice(1),status)){
+            return true;
+        }
+        status[row-1][col]=false;
+    }
+    if(row<rows-1&&matrix[(row+1)*cols+col]===path[0]&&status[row+1][col]===false){
+        if(path.length===1){
+            return true;
+        }
+        status[row+1][col]=true;
+        if(find(matrix,rows,cols,row+1,col,path.slice(1),status)){
+            return true;
+        }
+        status[row+1][col]=false;
+    }
+    if(col>0&&matrix[row*cols+col-1]===path[0]&&status[row][col-1]===false){
+        if(path.length==1){
+            return true;
+        }
+        status[row][col-1]=true;
+        if(find(matrix,rows,cols,row,col-1,path.slice(1),status)){
+            return true;
+        }
+        status[row][col-1]=false;
+    }
+    if(col<cols-1&&matrix[row*cols+col+1]===path[0]&&status[row][col+1]===false){
+        if(path.length===1){
+            return true;
+        }
+        status[row][col+1]=true;
+        if(find(matrix,rows,cols,row,col+1,path.slice(1),status)){
+            return true;
+        }
+        status[row][col+1]=false;
+    }
+    return false;
+}
+```
+
+### 2.机器人的运动范围
+
+地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？
+
+从0,0开始移动，当它准备进入坐标为(i,j)的格子时，通过检查坐标的数位和来判断机器人能否进入，如果可以进入，再判断它是否能进入上下左右的四个格子。
+
+```js
+function movingCount(threshold, rows, cols)
+{
+    // write code here
+    var flag = [];
+    for(var i=0;i<rows;i++){
+        flag.push([]);
+        for(var j =0;j<cols;j++){
+            flag[i][j] = 0;
+        }
+    }
+    return count(0,0,rows,cols,threshold,flag);
+}
+function count(i,j,rows,cols,threshold,flag){
+    if(i<0||j<0||i>=rows||j>=cols||flag[i][j]||sumNum(i)+sumNum(j)>threshold){
+        return 0;
+    }
+    flag[i][j] = 1;
+    return count(i+1,j,rows,cols,threshold,flag)
+    +count(i-1,j,rows,cols,threshold,flag)
+    +count(i,j+1,rows,cols,threshold,flag)
+    +count(i,j-1,rows,cols,threshold,flag)+1;
+}
+function sumNum(num){
+    var sum =0;
+    do{
+        sum+=num%10;
+    }while((num = Math.floor(num/10))>0);
+    return sum;
+}
+
+```
+
