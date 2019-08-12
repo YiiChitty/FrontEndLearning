@@ -143,15 +143,15 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 
 [JavaScript](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/JS面试准备.md)
 
-浏览器网络
+[浏览器网络](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/浏览器相关问题的准备.md)
 
-跨域
+[跨域](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/跨域面试准备.md)
 
 ### 性能优化与安全
 
 [性能优化](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/性能优化面试准备.md)
 
-安全
+[安全](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/安全问题的准备.md)
 
 ### 编程
 
