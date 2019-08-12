@@ -37,6 +37,7 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 
 1. [对获取DOM的N种方法性能的思考](https://github.com/YiiChitty/FrontEndLearning/blob/master/一些思考/关于获取DOM节点的思考.md)
 2. [虚拟DOM真的能提升性能吗？](https://github.com/YiiChitty/FrontEndLearning/blob/master/一些思考/虚拟DOM真的能提升性能吗？.md)
+3. [数组去重有多少种方法？性能如何？](https://github.com/YiiChitty/FrontEndLearning/blob/master/一些思考/两个数组去重有多少种方法？性能如何？.md)
 
 <br/>
 
@@ -48,7 +49,7 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 
 ### 第一部分  HTML
 #### [HTML](https://github.com/YiiChitty/FrontEndLearning/blob/master/HTML/HTML.md)  
-#### HTML5新特性 
+#### [HTML5新特性](https://github.com/YiiChitty/FrontEndLearning/blob/master/HTML/HTML5的新特点.md)  
 
 
 ### 第二部分 CSS
@@ -58,9 +59,10 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 - [七种方式实现三栏布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/用7种方式实现三栏布局.md)
 - [垂直居中](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/垂直居中.md)
 - [水平居中](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/水平居中.md)
-- 清除浮动的方法总结
+- [清除浮动的方法总结](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/清除浮动的方法.md)
 - [Flex](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/Flex.md)
 - [BFC](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/BFC.md)
+- [静态布局&流体布局&响应式布局&弹性布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/自适应布局方式.md)
 
 #### CSS3新特性
 
@@ -135,7 +137,9 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 
 ### 基础准备
 
-[HTML+CSS](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/HTML%2BCSS.md)
+[HTML](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/HTML面试准备.md)
+
+[CSS](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/CSS面试准备.md)
 
 [JavaScript](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/JS面试准备.md)
 
@@ -145,7 +149,7 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 
 ### 性能优化与安全
 
-性能优化
+[性能优化](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/性能优化面试准备.md)
 
 安全
 
