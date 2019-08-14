@@ -14,8 +14,8 @@
 
 近期“补足短板计划”学习内容：
 
+- CSS3
 - CSS在不同浏览器的兼容问题 
-- 响应式布局
 - 设计模式
 - JS对一些数据结构的实现  
 
@@ -38,6 +38,7 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 1. [对获取DOM的N种方法性能的思考](https://github.com/YiiChitty/FrontEndLearning/blob/master/一些思考/关于获取DOM节点的思考.md)
 2. [虚拟DOM真的能提升性能吗？](https://github.com/YiiChitty/FrontEndLearning/blob/master/一些思考/虚拟DOM真的能提升性能吗？.md)
 3. [数组去重有多少种方法？性能如何？](https://github.com/YiiChitty/FrontEndLearning/blob/master/一些思考/两个数组去重有多少种方法？性能如何？.md)
+4. [class里面用箭头函数和普通函数有何区别？](https://github.com/YiiChitty/FrontEndLearning/blob/master/一些思考/Class中箭头函数和普通函数是咋回事？.md)
 
 <br/>
 
@@ -166,6 +167,8 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 ### 面经
 
 [20190806 - 拼多多一面](https://github.com/YiiChitty/FrontEndLearning/blob/master/面经/拼多多一面.md)
+
+[20190812-网易一面](https://github.com/YiiChitty/FrontEndLearning/blob/master/面经/网易一面.md)
 
 <br/>
 
