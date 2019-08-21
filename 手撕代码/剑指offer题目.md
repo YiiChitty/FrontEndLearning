@@ -619,3 +619,115 @@ function sumNum(num){
 
 ```
 
+## 动态规划与贪心
+
+### 1.剪绳子
+
+有一根长度为n的绳子，把绳子剪成m段（m、n都是整数，n>1且m>1），每段绳子的长度记为k[0],k[1]……k[m]。请问他们长度的乘积最大是多少？例如，绳子长度是8的时候，把它剪成长度分别为2、3、3的三段，此时最大乘积是18。
+
+
+
+动态规划思路：在剪第一刀的时候，有n-1种可能的选择(1,2,3,…n-1)，因而f(n)=max(f(i)*f(n-i)) (0<i<n)。
+
+先得到f(2) f(3) 再从它们得到f(4)……f(n)
+
+```js
+function maxProductAfterCutting(length){
+    if(length<2) return 0;
+    if(length==2)return 1;
+    if(length==3)return 2;
+    
+    let product=[0,1,2,3];
+   
+    for(let i=4,max;i<=length;i++){
+        max=0;
+        for(let j=1;j<=i/2;j++){
+            let temp=product[j]*product[i-j];
+            if(max<temp){
+                max=temp;
+            }
+            product[i]=max;
+        }
+    }
+    return product[length];
+    
+}
+```
+
+贪心思路：
+
+如果按照这个策略来剪绳子：
+
+当n大于等于5时，尽可能多的剪长度为3的绳子；剩下的长度为4时，把绳子剪成两段长度为2的绳子。
+
+```js
+function maxProductAfterCutting(length){
+    if(length<2) return 0;
+    if(length==2)return 1;
+    if(length==3)return 2;
+    
+    //尽可能多剪3
+    let timesofthree=length/3;
+    
+    //绳子剩下的长度为4时，剪成2*2
+    if(length-timesofthree*3==1){
+        timesofthree-=1;
+    }
+    
+    let timesoftwo=(length-timesofthree*3)/2;
+    return Math.pow(3,timesofthree)*Math.pow(2,timesoftwo);
+}
+```
+
+## 位运算
+
+### 二进制中1的个数
+
+输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。
+
+思路：如果最后一位是1，那么减去1，最后一位变成0，其他不变；如果最后一位是0，减去1之后，最右边的1会变成0，后面一位变成1。
+
+把一个整数减去1然后与它做与运算，就能把整数最右边的1变成0，这样的话，有多少个1就可以进行多少次操作。
+
+```js
+function NumberOf1(n){
+    let count=0;
+    while (n){
+        ++count;
+        n=(n-1)&n
+    }
+    return count;
+}
+```
+
+
+
+## 高质量代码
+
+### 1.数值的n次方
+
+给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。
+
+**思路：**假设指数为32，如果有16次方，只需要再平方一次就好；16次方是8次方的平方；8次方是4次方的平方……所以对偶数而言就是 a的二分之n方相乘；对奇数而言就是 a的二分之n-1方相乘再乘以a，于是可以用递归。
+
+不过好像没有考虑到幂次是负数的情况，不过也不要紧：分开处理一下就好了。
+
+```js
+function Power(base, exponent){
+	let result=power(base,Math.abs(exponent));
+	function power(base,exponent){
+		if(exponent===0){return 1;}
+		if(exponent===1){return base;}
+    
+		let result=Power(base,exponent>>1);
+		result *=result;
+		if(exponent& 0x1===1){
+			//奇数再乘以a
+			result *=base;
+		}
+		return result
+	}
+	return exponent>=0? result:1/result;
+}
+```
+

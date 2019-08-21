@@ -408,7 +408,50 @@ margin 上下左右都有用。
 
 ## Flex布局
 
-Flex是弹性布局，用来为盒装模型提供最大的灵活性。
+Flex是弹性布局，用来为盒装模型提供最大的灵活性。布局的传统解决方案基于盒装模型，依赖display、position和float属性。**任何一个容器都可以指定为 Flex 布局**。
+
+注意：**设置为 Flex 布局后，子元素的 float 、clear 和 vertical-align 属性将失效。**
+
+属性分为容器属性和元素属性：
+- 容器属性包括
+  - flex-direaction:决定主轴方向
+  ```css
+  .box{
+      flex-direaction:row|row-reverse|column|column-reverse;
+  }
+  ```
+  - flex-wrap:决定了如何换行
+  ```css
+  .box{
+      flex-wrap:nowrap|wrap|wrap-reverse;
+      /*不换行|换行第一行在上|换行第一行在下*/
+  }
+  ```
+  - flex-flow:前面两个的简写
+  ```css
+  .box{
+        flex-flow:<flex-direction>||<flex-wrap>;
+    }
+  ```
+  - justify-content：水平轴对齐方式
+  ```css
+  .box{
+        justify-content:flex-start|flex-end|center|space-between|space-around;    
+    }
+  ```
+  - align-items: 垂直轴对齐方式
+  ```css
+  .box{
+      align-items:flex-start|flex-end|center|space-between|space-around;
+  }
+  ```
+- 元素属性align-content
+  - order 定义项目的排序顺序，越小越靠前
+  - flex-grow 放大比列，默认是0，即使存在空间也不会放大，1是说等分剩余空间
+  - flex-shrink 缩小比例，当空间不够的情况下，会等比缩小为0不缩小，为1等比缩小
+  - flex-basis 定义分配多余空间时，项目占据的控件
+  - flex 上面三个属性的缩写，默认是0 1 auto。后两个属性可选。
+  - align-self 允许单个与其他不一样的对齐方式，可以覆盖align-items属性，默认是auto表示继承。
 
 
 
@@ -425,8 +468,6 @@ transtion也可以实现动画，但强调过渡，是元素的一个或多个�
 ## transition、animation的区别
 
 animation和transition大部分属性相同，都是随时间改变元素的属性值，区别是transition需要触发一个事件才能改变属性；animation不需要触发任何事件随时间改变属性。transition为2帧，从from……to ，animation可以一帧一帧的。
-
-animation和transition都是随时间改变元素的属性值，区别：
 
 
 
