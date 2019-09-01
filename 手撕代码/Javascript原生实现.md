@@ -18,7 +18,7 @@ Function.prototype.myCall=function(context){
 }
 ```
 
-### apply
+## apply
 
 ```javascript
 Function.prototype.myApply=function(context){
