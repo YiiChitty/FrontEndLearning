@@ -65,13 +65,15 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 - [BFC](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/BFC.md)
 - [静态布局&流体布局&响应式布局&弹性布局](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/自适应布局方式.md)
 
-#### CSS3新特性
+#### [CSS3新特性](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/CSS3.md)
+
+#### [CSS模块化](https://github.com/YiiChitty/FrontEndLearning/blob/master/CSS/CSS模块化.md)
 
 ### 第三部分 JavaScript
 #### [Javascript基础](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/JS基础.md)
 #### [ES6](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/ES6.md)   
-#### BOM   
-#### DOM   
+#### [BOM](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/Bom.md)   
+#### [DOM](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/DOM与事件.md)
 
 #### [常用方法原理与原生实现](https://github.com/YiiChitty/FrontEndLearning/blob/master/Javascript/JS常用方法原理.md)
 
@@ -136,6 +138,8 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 
 ## 就业准备篇目录
 
+[集成版](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/复习.md)
+
 ### 基础准备
 
 [HTML](https://github.com/YiiChitty/FrontEndLearning/blob/master/准备/HTML面试准备.md)
@@ -166,9 +170,9 @@ LeetCode刷题题目与代码 可以前往另一个repository：[传送门](http
 
 ### 面经
 
-[20190806 - 拼多多一面](https://github.com/YiiChitty/FrontEndLearning/blob/master/面经/拼多多一面.md)
+[面经集合](https://github.com/YiiChitty/FrontEndLearning/blob/master/面经/面经.md)
 
-[20190812-网易一面](https://github.com/YiiChitty/FrontEndLearning/blob/master/面经/网易一面.md)
+
 
 <br/>
 
